@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Vioxa Hebergement</title>
+    <title>MonServeurHost</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,7 +10,7 @@
 
 <header class="header">
     <div class="nav">
-        <div class="logo">Vioxa Hebergement</div>
+        <div class="logo">MonServeurHost</div>
         <nav>
             <a href="#features">Fonctionnalités</a>
             <a href="#plans">Plans & Prix</a>
@@ -21,34 +21,29 @@
     </div>
 </header>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>Hébergement de serveurs puissant</h1>
-        <p>Performance, stabilité et support premium pour vos serveurs de jeux</p>
-        <a href="#plans" class="btn-main">Commencer</a>
-    </div>
-</section>
+<!-- HERO (vide, juste l'image) -->
+<section class="hero"></section>
 
 <section id="features" class="features">
-    <div class="feature-card">
+    <div class="feature-card reveal">
         <h3>⚡ Performance</h3>
         <p>Serveurs rapides à faible latence</p>
     </div>
-    <div class="feature-card">
+    <div class="feature-card reveal">
         <h3>🛡️ Sécurité</h3>
         <p>Protection DDoS avancée</p>
     </div>
-    <div class="feature-card">
+    <div class="feature-card reveal">
         <h3>🎧 Support</h3>
         <p>Support client 24/7</p>
     </div>
 </section>
 
 <section id="plans" class="pricing">
-    <h2>Plans & Tarifs</h2>
+    <h2 class="reveal">Plans & Tarifs</h2>
 
     <div class="pricing-grid">
-        <div class="plan">
+        <div class="plan reveal">
             <h3>Starter</h3>
             <p class="price">5€ / mois</p>
             <ul>
@@ -59,7 +54,7 @@
             <button>Choisir</button>
         </div>
 
-        <div class="plan pro">
+        <div class="plan pro reveal">
             <h3>Pro</h3>
             <p class="price">15€ / mois</p>
             <ul>
@@ -70,7 +65,7 @@
             <button>Choisir</button>
         </div>
 
-        <div class="plan">
+        <div class="plan reveal">
             <h3>Ultimate</h3>
             <p class="price">30€ / mois</p>
             <ul>
@@ -83,7 +78,7 @@
     </div>
 </section>
 
-<section id="about" class="about">
+<section id="about" class="about reveal">
     <h2>À propos de nous</h2>
     <p>
         Nous fournissons des serveurs de jeux fiables et performants
@@ -91,7 +86,7 @@
     </p>
 </section>
 
-<section id="contact" class="contact">
+<section id="contact" class="contact reveal">
     <h2>Contact</h2>
     <form>
         <input type="text" placeholder="Votre nom" required>
@@ -105,7 +100,6 @@
     <p>© 2026 MonServeurHost - Tous droits réservés</p>
 </footer>
 
+<script src="scroll.js"></script>
 </body>
 </html>
-
-
