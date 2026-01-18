@@ -1,48 +1,180 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Game Website</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vioxa Hébergement | Serveurs Minecraft</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <link rel="stylesheet" href="style.css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d1117;
+            color: #ffffff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1f6feb, #4f46e5);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .pricing {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+        }
+
+        .plan {
+            background: #161b22;
+            border-radius: 12px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            border: 2px solid #2d333b;
+            transition: 0.3s;
+        }
+
+        .plan:hover {
+            transform: translateY(-8px);
+            border-color: #4f46e5;
+        }
+
+        .plan h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #4f46e5;
+            margin: 20px 0;
+        }
+
+        .plan ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .plan ul li {
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+
+        .plan button {
+            background: #4f46e5;
+            border: none;
+            padding: 14px 25px;
+            color: white;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .plan button:hover {
+            background: #3730a3;
+        }
+
+        .features {
+            background: #111827;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .features h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .features p {
+            margin: 10px 0;
+            font-size: 1.05rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="nav-left">
-      <div class="logo">G</div>
+<header>
+    <h1>Vioxa Hébergement</h1>
+    <p>Hébergement de serveurs Minecraft performant, fiable et pas cher 🚀</p>
+</header>
+
+<section class="pricing">
+
+    <div class="plan">
+        <h2>Starter – 4 Go</h2>
+        <div class="price">5,99€</div>
+        <ul>
+            <li>4 Go de RAM</li>
+            <li>Slots illimités</li>
+            <li>Backups automatiques</li>
+            <li>Support Discord</li>
+        </ul>
+        <button>Commander</button>
     </div>
 
-    <nav class="nav-center">
-      <a href="#">BLOG</a>
-      <a href="#">MEDIA</a>
-      <a href="#">THE GAME</a>
-      <a href="#">COMMUNITY</a>
-      <a href="#">DOWNLOAD</a>
-    </nav>
-
-    <div class="nav-right">
-      <span>LOGIN</span>
-      <span>REGISTER</span>
-      <a href="#" class="btn-buy">PURCHASE</a>
+    <div class="plan">
+        <h2>Gamer – 12 Go</h2>
+        <div class="price">12,99€</div>
+        <ul>
+            <li>12 Go de RAM</li>
+            <li>Plugins & Mods</li>
+            <li>Backups avancés</li>
+            <li>Support prioritaire</li>
+        </ul>
+        <button>Commander</button>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="overlay"></div>
-
-    <div class="hero-content">
-      <h1 class="game-title">MY GAME</h1>
-
-      <div class="hero-text">
-        <h2>THE GAME IS AVAILABLE NOW!</h2>
-        <p>Purchase now for immediate access.</p>
-      </div>
+    <div class="plan">
+        <h2>Pro – 32 Go</h2>
+        <div class="price">24,99€</div>
+        <ul>
+            <li>32 Go de RAM</li>
+            <li>+100 joueurs stables</li>
+            <li>Protection DDoS</li>
+            <li>Support 24/7</li>
+        </ul>
+        <button>Commander</button>
     </div>
-  </section>
+
+</section>
+
+<section class="features">
+    <h3>Pourquoi choisir Vioxa Hébergement ?</h3>
+    <p>⚡ Serveurs haute performance (NVMe & CPU puissants)</p>
+    <p>🛡️ Protection DDoS incluse</p>
+    <p>🎮 Installation Minecraft en 1 clic</p>
+    <p>💬 Support rapide et efficace</p>
+</section>
+
+<footer>
+    © 2026 Vioxa Hébergement — Tous droits réservés
+</footer>
 
 </body>
 </html>
