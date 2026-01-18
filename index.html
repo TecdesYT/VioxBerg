@@ -45,12 +45,33 @@
         nav ul li a {
             color: #ffffff;
             text-decoration: none;
-            font-size: 1rem;
             transition: 0.2s;
         }
 
         nav ul li a:hover {
             color: #4f46e5;
+        }
+
+        /* PROMO */
+        .promo {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .promo button {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
         }
 
         /* HEADER */
@@ -65,8 +86,8 @@
         }
 
         header p {
-            font-size: 1.2rem;
             margin-top: 10px;
+            font-size: 1.2rem;
         }
 
         /* OFFRES */
@@ -137,6 +158,7 @@
             margin-bottom: 20px;
         }
 
+        /* FOOTER */
         footer {
             text-align: center;
             padding: 20px;
@@ -195,17 +217,26 @@
     </ul>
 </nav>
 
+<!-- PROMO -->
+<div class="promo" id="promoBox">
+    🎉 <strong>OFFRE DE BIENVENUE</strong> —
+    Code <strong>BIENVENUE</strong> :
+    <strong>-10%</strong> sur ta commande
+    (utilisable <strong>1 seule fois</strong>)
+    <button onclick="closePromo()">✖</button>
+</div>
+
 <!-- HEADER -->
 <header>
     <h1>Vioxa Hébergement</h1>
-    <p>Hébergement Minecraft puissant, fiable et accessible ⚡</p>
+    <p>Hébergement Minecraft puissant, fiable et pas cher 🚀</p>
 </header>
 
 <!-- OFFRES -->
 <section class="pricing" id="offres">
 
     <div class="plan">
-        <h2>Starter – 4 Go</h2>
+        <h2>Starter — 4 Go</h2>
         <div class="price">5,99€</div>
         <ul>
             <li>4 Go RAM</li>
@@ -216,7 +247,7 @@
     </div>
 
     <div class="plan">
-        <h2>Gamer – 12 Go</h2>
+        <h2>Gamer — 12 Go</h2>
         <div class="price">12,99€</div>
         <ul>
             <li>12 Go RAM</li>
@@ -227,7 +258,7 @@
     </div>
 
     <div class="plan">
-        <h2>Pro – 32 Go</h2>
+        <h2>Pro — 32 Go</h2>
         <div class="price">24,99€</div>
         <ul>
             <li>32 Go RAM</li>
@@ -243,8 +274,8 @@
 <section class="features">
     <h3>Pourquoi choisir Vioxa Hébergement ?</h3>
     <p>⚡ Performances élevées</p>
-    <p>🛡️ Sécurité & DDoS inclus</p>
-    <p>🎮 Panel simple & efficace</p>
+    <p>🛡️ Protection DDoS incluse</p>
+    <p>🎮 Panel simple et rapide</p>
 </section>
 
 <!-- FOOTER -->
@@ -252,16 +283,21 @@
     © 2026 Vioxa Hébergement — Tous droits réservés
 </footer>
 
-<!-- FAUX COOKIES -->
+<!-- COOKIES -->
 <div class="cookie" id="cookieBox">
     <p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
     <button class="accept" onclick="closeCookie()">Accepter</button>
     <button class="refuse" onclick="closeCookie()">Refuser</button>
 </div>
 
+<!-- JS -->
 <script>
     function closeCookie() {
         document.getElementById("cookieBox").style.display = "none";
+    }
+
+    function closePromo() {
+        document.getElementById("promoBox").style.display = "none";
     }
 </script>
 
