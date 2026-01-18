@@ -7,17 +7,17 @@
 }
 
 body {
-  background: #000;
-  color: #fff;
+  background: #061626;
+  color: #ffffff;
 }
 
-/* TOP BAR */
-.topbar {
+/* NAVBAR */
+.navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 64px;
-  background: rgba(0, 0, 0, 0.6);
+  height: 70px;
+  background: linear-gradient(to bottom, #1c3958, #10273f);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,25 +25,39 @@ body {
   z-index: 10;
 }
 
-.game-name {
+.logo {
+  width: 42px;
+  height: 42px;
+  border: 2px solid #8fc4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 22px;
 }
 
-.top-menu a {
-  color: #ddd;
+.nav-center a {
+  color: #cfe3ff;
   text-decoration: none;
-  margin: 0 15px;
-  font-size: 15px;
+  margin: 0 14px;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
-.top-menu a:hover {
-  color: #4db2ff;
+.nav-center a:hover {
+  color: white;
 }
 
-.btn-small {
-  background: #2f8cff;
-  padding: 8px 14px;
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 13px;
+}
+
+.btn-buy {
+  padding: 8px 18px;
+  background: linear-gradient(to bottom, #3ea6ff, #1f6fd6);
   border-radius: 4px;
   text-decoration: none;
   color: white;
@@ -53,53 +67,41 @@ body {
 /* HERO */
 .hero {
   height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1604079628040-94301bb21b91");
-  background-size: cover;
-  background-position: center;
+  background: url("background.jpg") center/cover no-repeat;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: radial-gradient(circle, rgba(0,0,0,0.35), rgba(0,0,0,0.85));
 }
 
-/* CONTENU CENTRAL */
 .hero-content {
   position: relative;
-  z-index: 2;
+  text-align: center;
 }
 
-.hero-content h1 {
-  font-size: 96px;
+.game-title {
+  font-size: 110px;
   letter-spacing: 6px;
-  text-shadow: 0 0 30px rgba(0,0,0,0.9);
+  color: #cde4ff;
+  text-shadow: 0 0 35px rgba(120,170,255,0.8);
 }
 
-.hero-content p {
-  font-size: 22px;
-  margin: 20px 0 40px;
-  color: #ddd;
+.hero-text {
+  margin-top: 40px;
 }
 
-/* BOUTON PRINCIPAL */
-.btn-main {
-  display: inline-block;
-  padding: 18px 40px;
-  background: #2f8cff;
-  color: white;
-  font-size: 18px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  box-shadow: 0 0 25px rgba(47,140,255,0.6);
+.hero-text h2 {
+  font-size: 26px;
+  letter-spacing: 2px;
 }
 
-.btn-main:hover {
-  background: #4db2ff;
+.hero-text p {
+  margin-top: 10px;
+  color: #cbdcff;
 }
