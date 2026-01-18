@@ -5,42 +5,43 @@
   <title>Mon Jeu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Feuille de style -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">MON JEU</div>
+  <!-- BARRE DU HAUT -->
+  <header class="topbar">
+    <div class="top-left">
+      <span class="game-name">MON JEU</span>
+    </div>
 
-    <nav>
-      <a href="#">Blog</a>
-      <a href="#">Médias</a>
+    <nav class="top-menu">
+      <a href="#">Accueil</a>
       <a href="#">Le jeu</a>
+      <a href="#">Médias</a>
       <a href="#">Communauté</a>
-      <a href="#">Télécharger</a>
     </nav>
 
-    <div class="actions">
-      <a href="#">Connexion</a>
-      <a href="#">Inscription</a>
-      <a href="#" class="purchase">Acheter</a>
+    <div class="top-right">
+      <a href="#" class="btn-small">Acheter</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- SECTION PRINCIPALE -->
+  <main class="hero">
+    <div class="overlay"></div>
+
     <div class="hero-content">
       <h1>MON JEU</h1>
       <p>
-        Disponible maintenant !<br>
-        Explore, construis et crée ton aventure.
+        Une aventure sandbox<br>
+        à explorer et construire
       </p>
-      <button>Acheter maintenant</button>
+
+      <a href="#" class="btn-main">Acheter maintenant</a>
     </div>
-  </section>
+  </main>
 
 </body>
 </html>
