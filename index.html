@@ -2,71 +2,108 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Vioxa Heberg - Hébergement Minecraft</title>
-    <link rel="stylesheet" href="style.css">
+    <title>MonServeurHost</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>Vioxa Heberg</h1>
-    <p>Hébergement Minecraft puissant & fiable</p>
+<header class="header">
+    <div class="nav">
+        <div class="logo">MonServeurHost</div>
+        <nav>
+            <a href="#features">Fonctionnalités</a>
+            <a href="#plans">Plans & Prix</a>
+            <a href="#about">À propos</a>
+            <a href="#contact">Contact</a>
+            <a href="#" class="btn-nav">Inscription</a>
+        </nav>
+    </div>
 </header>
 
-<section class="intro">
-    <h2>Pourquoi nous choisir ?</h2>
-    <p>Serveurs rapides, protection anti-DDoS, support 24/7 et performances optimales.</p>
+<section class="hero">
+    <div class="hero-content">
+        <h1>Hébergement de serveurs puissant</h1>
+        <p>Performance, stabilité et support premium pour vos serveurs de jeux</p>
+        <a href="#plans" class="btn-main">Commencer</a>
+    </div>
 </section>
 
-<section class="offers">
-    <h2>Nos Offres</h2>
+<section id="features" class="features">
+    <div class="feature-card">
+        <h3>⚡ Performance</h3>
+        <p>Serveurs rapides à faible latence</p>
+    </div>
+    <div class="feature-card">
+        <h3>🛡️ Sécurité</h3>
+        <p>Protection DDoS avancée</p>
+    </div>
+    <div class="feature-card">
+        <h3>🎧 Support</h3>
+        <p>Support client 24/7</p>
+    </div>
+</section>
 
-    <div class="cards">
-        <div class="card">
-            <h3>⚔️ Starter</h3>
-            <p class="price">3,99€ / mois</p>
+<section id="plans" class="pricing">
+    <h2>Plans & Tarifs</h2>
+
+    <div class="pricing-grid">
+        <div class="plan">
+            <h3>Starter</h3>
+            <p class="price">5€ / mois</p>
             <ul>
-                <li>2 Go RAM</li>
-                <li>10 Slots</li>
-                <li>Stockage SSD</li>
-                <li>Support 24/7</li>
+                <li>10 joueurs</li>
+                <li>1 Go RAM</li>
+                <li>Support ticket</li>
             </ul>
-            <button>Commander</button>
+            <button>Choisir</button>
         </div>
 
-        <div class="card popular">
-            <h3>🔥 Pro</h3>
-            <p class="price">7,99€ / mois</p>
+        <div class="plan pro">
+            <h3>Pro</h3>
+            <p class="price">15€ / mois</p>
             <ul>
+                <li>50 joueurs</li>
                 <li>4 Go RAM</li>
-                <li>30 Slots</li>
-                <li>Stockage SSD NVMe</li>
-                <li>Plugins & Mods</li>
                 <li>Support prioritaire</li>
             </ul>
-            <button>Commander</button>
+            <button>Choisir</button>
         </div>
 
-        <div class="card">
-            <h3>👑 Ultimate</h3>
-            <p class="price">14,99€ / mois</p>
+        <div class="plan">
+            <h3>Ultimate</h3>
+            <p class="price">30€ / mois</p>
             <ul>
-                <li>8 Go RAM</li>
-                <li>Slots illimités</li>
-                <li>SSD NVMe</li>
-                <li>Sauvegardes auto</li>
-                <li>Accès FTP</li>
+                <li>Illimité</li>
+                <li>16 Go RAM</li>
+                <li>Support premium</li>
             </ul>
-            <button>Commander</button>
+            <button>Choisir</button>
         </div>
     </div>
 </section>
 
+<section id="about" class="about">
+    <h2>À propos de nous</h2>
+    <p>
+        Nous fournissons des serveurs de jeux fiables et performants
+        pour les communautés et projets ambitieux.
+    </p>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Contact</h2>
+    <form>
+        <input type="text" placeholder="Votre nom" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Message" required></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+</section>
+
 <footer>
-    <p>© 2026 MineHost - Tous droits réservés</p>
+    <p>© 2026 MonServeurHost - Tous droits réservés</p>
 </footer>
 
 </body>
 </html>
-
-
