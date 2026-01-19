@@ -49,14 +49,50 @@ nav ul li a:hover{color:#4f46e5}
     cursor:pointer;
 }
 
-/* HEADER */
+/* HEADER AVEC ANIMATION */
 header{
+    position:relative;
+    overflow:hidden;
     background:linear-gradient(135deg,#1f6feb,#4f46e5);
-    padding:60px 20px;
+    padding:80px 20px;
     text-align:center;
 }
-header h1{font-size:3rem}
-header p{margin-top:10px;font-size:1.2rem}
+
+/* PARTICULES */
+header::before,
+header::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0 3px, transparent 4px),
+        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 50% 70%, rgba(255,255,255,0.10) 0 2px, transparent 3px);
+    animation:float 12s linear infinite;
+}
+
+header::after{
+    animation-duration:18s;
+    opacity:0.6;
+}
+
+@keyframes float{
+    from{transform:translateY(0)}
+    to{transform:translateY(-120px)}
+}
+
+header h1{
+    font-size:3rem;
+    position:relative;
+    z-index:1;
+}
+
+header p{
+    margin-top:10px;
+    font-size:1.2rem;
+    position:relative;
+    z-index:1;
+}
 
 /* OFFRES */
 .pricing{
@@ -137,39 +173,22 @@ footer{
 }
 .accept{background:#4f46e5;color:white}
 .refuse{background:#374151;color:white}
-
-/* PARTICULES */
-.particle{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:#4f46e5;
-    border-radius:50%;
-    pointer-events:none;
-    animation:explode 0.8s ease-out forwards;
-}
-
-@keyframes explode{
-    from{transform:translate(0,0);opacity:1}
-    to{transform:translate(var(--x),var(--y));opacity:0}
-}
 </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">Vioxa Hébergement</div>
-    <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#offres">Offres</a></li>
-        <li><a href="#">Discord</a></li>
-        <li><a href="#">Panel</a></li>
-    </ul>
+<div class="logo">Vioxa Hébergement</div>
+<ul>
+<li><a href="#">Accueil</a></li>
+<li><a href="#offres">Offres</a></li>
+<li><a href="#">Discord</a></li>
+<li><a href="#">Panel</a></li>
+</ul>
 </nav>
 
-<div class="promo" id="promoBox">
+<div class="promo">
 🎉 Code <strong>BIENVENUE</strong> : <strong>-10%</strong> (1 seule fois)
-<button onclick="closePromo()">✖</button>
 </div>
 
 <header>
@@ -227,40 +246,11 @@ footer{
 © 2026 Vioxa Hébergement — Tous droits réservés
 </footer>
 
-<!-- COOKIES -->
 <div class="cookie" id="cookieBox">
 <p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
-<button class="accept" onclick="acceptCookie(event)">Accepter</button>
-<button class="refuse" onclick="closeCookie()">Refuser</button>
+<button class="accept" onclick="this.parentElement.style.display='none'">Accepter</button>
+<button class="refuse" onclick="this.parentElement.style.display='none'">Refuser</button>
 </div>
-
-<script>
-function closePromo(){
-    document.getElementById("promoBox").style.display="none";
-}
-
-function closeCookie(){
-    document.getElementById("cookieBox").style.display="none";
-}
-
-function acceptCookie(e){
-    const btn = e.target;
-    const rect = btn.getBoundingClientRect();
-
-    for(let i=0;i<15;i++){
-        const p=document.createElement("span");
-        p.className="particle";
-        p.style.left=(rect.left+rect.width/2)+"px";
-        p.style.top=(rect.top+rect.height/2)+"px";
-        p.style.setProperty("--x",(Math.random()*120-60)+"px");
-        p.style.setProperty("--y",(Math.random()*120-60)+"px");
-        document.body.appendChild(p);
-        setTimeout(()=>p.remove(),800);
-    }
-
-    setTimeout(closeCookie,300);
-}
-</script>
 
 </body>
 </html>
