@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vioxa Hébergement</title>
 
+<!-- PAYPAL SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=PAYPAL_CLIENT_ID_ICI&currency=EUR"></script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
     font-family:'Segoe UI',Tahoma,sans-serif;
     background:#0d1117;
@@ -21,66 +23,26 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    position:sticky;
-    top:0;
-    z-index:1000;
 }
 .logo{color:#4f46e5;font-weight:bold;font-size:1.4rem}
-nav ul{list-style:none;display:flex;gap:15px;align-items:center}
-nav a, nav button{
-    color:white;
+nav ul{list-style:none;display:flex;gap:15px}
+nav button,nav a{
     background:none;
     border:none;
+    color:white;
     cursor:pointer;
-    font-size:1rem;
     padding:8px 14px;
     border-radius:6px;
 }
-nav a:hover, nav button:hover{background:#1f2933}
+nav button:hover,nav a:hover{background:#1f2933}
 
-/* PROMO */
-.promo{
-    background:linear-gradient(135deg,#22c55e,#16a34a);
-    text-align:center;
-    padding:15px;
-}
-
-/* HEADER + BULLES */
+/* HEADER */
 header{
-    position:relative;
-    overflow:hidden;
     background:linear-gradient(135deg,#1f6feb,#4f46e5);
-    padding:90px 20px;
+    padding:70px 20px;
     text-align:center;
 }
-header h1, header p{position:relative;z-index:2}
 header h1{font-size:3rem}
-header p{margin-top:10px;font-size:1.2rem}
-
-.bubbles{
-    position:absolute;
-    inset:0;
-    z-index:1;
-    pointer-events:none;
-}
-.bubble{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,0.15);
-    filter:blur(2px);
-    animation:move 25s infinite alternate ease-in-out;
-}
-.b1{width:160px;height:160px;top:60%;left:10%}
-.b2{width:240px;height:240px;top:20%;left:70%}
-.b3{width:200px;height:200px;top:70%;left:80%}
-.b4{width:280px;height:280px;top:10%;left:30%}
-.b5{width:140px;height:140px;top:45%;left:50%}
-
-@keyframes move{
-    0%{transform:translate(0,0)}
-    50%{transform:translate(60px,-40px)}
-    100%{transform:translate(-60px,40px)}
-}
 
 /* OFFRES */
 .pricing{
@@ -101,8 +63,6 @@ header p{margin-top:10px;font-size:1.2rem}
 }
 .plan h2{font-size:1.8rem}
 .price{font-size:2.4rem;color:#4f46e5;margin:20px 0}
-.plan ul{list-style:none;margin-bottom:25px}
-.plan ul li{margin:10px 0}
 .plan button{
     background:#4f46e5;
     border:none;
@@ -113,24 +73,8 @@ header p{margin-top:10px;font-size:1.2rem}
 }
 .out{opacity:.6}
 .out button{background:#374151;cursor:not-allowed}
-.badge{
-    position:absolute;
-    top:15px;
-    right:15px;
-    background:#dc2626;
-    padding:5px 10px;
-    border-radius:6px;
-    font-size:.75rem;
-}
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:20px;
-    color:#9ca3af;
-}
-
-/* MODAL AUTH */
+/* MODAL PAYPAL */
 .modal{
     position:fixed;
     inset:0;
@@ -144,73 +88,17 @@ footer{
     background:#161b22;
     padding:30px;
     border-radius:12px;
-    width:320px;
+    width:350px;
 }
-.modal h3{text-align:center;margin-bottom:15px}
-.modal input{
-    width:100%;
-    padding:12px;
-    margin-bottom:10px;
-    border-radius:6px;
-    border:none;
-    background:#0d1117;
-    color:white;
-}
-.modal button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-    background:#4f46e5;
-    color:white;
+.close{
+    text-align:right;
     cursor:pointer;
+    color:#9ca3af;
 }
-.switch{
-    margin-top:10px;
+.success{
+    color:#22c55e;
     text-align:center;
-    font-size:.9rem;
-    cursor:pointer;
-    color:#93c5fd;
-}
-.msg{text-align:center;font-size:.9rem;margin-top:10px}
-.success{color:#22c55e}
-.error{color:#ef4444}
-
-/* COOKIES */
-.cookie{
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    background:#161b22;
-    border:1px solid #2d333b;
-    padding:20px;
-    border-radius:10px;
-    max-width:300px;
-    z-index:10000;
-}
-.cookie button{
-    margin-right:10px;
-    padding:8px 15px;
-    border-radius:6px;
-    border:none;
-    cursor:pointer;
-}
-.accept{background:#4f46e5;color:white}
-.refuse{background:#374151;color:white}
-
-/* FEU D'ARTIFICE */
-.firework{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:#4f46e5;
-    border-radius:50%;
-    pointer-events:none;
-    animation:fire 0.8s ease-out forwards;
-}
-@keyframes fire{
-    from{opacity:1}
-    to{transform:translate(var(--x),var(--y));opacity:0}
+    margin-top:15px;
 }
 </style>
 </head>
@@ -221,135 +109,75 @@ footer{
 <ul>
 <li><a href="#">Discord</a></li>
 <li><a href="#">Panel</a></li>
-<li id="authBtn"></li>
 </ul>
 </nav>
 
-<div class="promo">
-🎉 Code <strong>BIENVENUE</strong> : <strong>-10%</strong> (1 seule fois)
-</div>
-
 <header>
-<div class="bubbles">
-<span class="bubble b1"></span>
-<span class="bubble b2"></span>
-<span class="bubble b3"></span>
-<span class="bubble b4"></span>
-<span class="bubble b5"></span>
-</div>
 <h1>Vioxa Hébergement</h1>
-<p>Hébergement Minecraft performant et pas cher 🚀</p>
+<p>Hébergement Minecraft performant</p>
 </header>
 
 <section class="pricing">
+
+<!-- 4 GO PAYABLE -->
 <div class="plan">
 <h2>Starter — 4 Go</h2>
 <div class="price">5,99€</div>
-<ul><li>4 Go RAM</li><li>Slots illimités</li></ul>
-<button>Commander</button>
+<button onclick="openPay()">Commander</button>
 </div>
 
 <div class="plan out">
-<div class="badge">RUPTURE</div>
 <h2>Gamer — 12 Go</h2>
 <div class="price">12,99€</div>
-<ul><li>12 Go RAM</li></ul>
 <button disabled>Indisponible</button>
 </div>
 
 <div class="plan out">
-<div class="badge">RUPTURE</div>
 <h2>Pro — 32 Go</h2>
 <div class="price">24,99€</div>
-<ul><li>32 Go RAM</li></ul>
 <button disabled>Indisponible</button>
 </div>
+
 </section>
 
-<footer>
-© 2026 Vioxa Hébergement — Tous droits réservés
-</footer>
-
-<!-- MODAL AUTH -->
-<div class="modal" id="modal">
+<!-- MODAL PAYPAL -->
+<div class="modal" id="payModal">
 <div class="modal-content">
-<h3 id="modalTitle">Inscription</h3>
-<input id="user" placeholder="Pseudo">
-<input id="email" placeholder="Email">
-<input id="pass" type="password" placeholder="Mot de passe">
-<button onclick="submitAuth()">Valider</button>
-<div class="msg" id="msg"></div>
-<div class="switch" onclick="switchMode()">Déjà un compte ? Se connecter</div>
-</div>
-</div>
+<div class="close" onclick="closePay()">✖</div>
+<h3>Paiement PayPal — 4 Go</h3>
+<p style="text-align:center;margin-bottom:10px;">Montant : <strong>5,99€</strong></p>
 
-<!-- COOKIES -->
-<div class="cookie" id="cookieBox">
-<p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
-<button class="accept" onclick="acceptCookie(event)">Accepter</button>
-<button class="refuse" onclick="closeCookie()">Refuser</button>
+<div id="paypal-button-container"></div>
+<div class="success" id="paySuccess"></div>
+</div>
 </div>
 
 <script>
-/* AUTH */
-let mode="register";
-function updateNavbar(){
-    const b=document.getElementById("authBtn");
-    const u=localStorage.getItem("loggedUser");
-    b.innerHTML = u
-        ? `<button onclick="logout()">Se déconnecter</button>`
-        : `<button onclick="openModal()">S'inscrire</button>`;
-}
-updateNavbar();
-
-function openModal(){modal.style.display="flex"}
-modal.onclick=e=>{if(e.target===modal)modal.style.display="none"}
-
-function switchMode(){
-    mode = mode==="register"?"login":"register";
-    modalTitle.textContent = mode==="register"?"Inscription":"Connexion";
-    email.style.display = mode==="login"?"none":"block";
+function openPay(){
+    payModal.style.display="flex";
 }
 
-function submitAuth(){
-    const u=user.value,p=pass.value,e=email.value;
-    if(!u||!p||(mode==="register"&&!e)){
-        msg.textContent="Champs manquants";msg.className="msg error";return;
+function closePay(){
+    payModal.style.display="none";
+}
+
+paypal.Buttons({
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: "5.99"
+                }
+            }]
+        });
+    },
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            document.getElementById("paySuccess").innerHTML =
+                "✅ Paiement réussi ! Merci " + details.payer.name.given_name;
+        });
     }
-    if(mode==="register"){
-        localStorage.setItem("user_"+u,JSON.stringify({e,p}));
-        msg.textContent="Compte créé ✔";msg.className="msg success";
-    }else{
-        const d=JSON.parse(localStorage.getItem("user_"+u)||"null");
-        if(!d||d.p!==p){msg.textContent="Erreur connexion";msg.className="msg error";return;}
-        localStorage.setItem("loggedUser",u);
-        modal.style.display="none";
-        updateNavbar();
-    }
-}
-function logout(){
-    localStorage.removeItem("loggedUser");
-    updateNavbar();
-}
-
-/* COOKIES + FEU D'ARTIFICE */
-function closeCookie(){
-    document.getElementById("cookieBox").style.display="none";
-}
-function acceptCookie(e){
-    const r=e.target.getBoundingClientRect();
-    for(let i=0;i<20;i++){
-        const f=document.createElement("span");
-        f.className="firework";
-        f.style.left=r.left+r.width/2+"px";
-        f.style.top=r.top+r.height/2+"px";
-        f.style.setProperty("--x",(Math.random()*120-60)+"px");
-        f.style.setProperty("--y",(Math.random()*120-60)+"px");
-        document.body.appendChild(f);
-        setTimeout(()=>f.remove(),800);
-    }
-    setTimeout(closeCookie,300);
-}
+}).render('#paypal-button-container');
 </script>
 
 </body>
