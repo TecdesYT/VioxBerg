@@ -46,11 +46,7 @@ header{
     text-align:center;
 }
 
-header h1, header p{
-    position:relative;
-    z-index:2;
-}
-
+header h1, header p{position:relative;z-index:2}
 header h1{font-size:3rem}
 header p{margin-top:10px;font-size:1.2rem}
 
@@ -58,10 +54,9 @@ header p{margin-top:10px;font-size:1.2rem}
 .bubbles{
     position:absolute;
     inset:0;
-    z-index:1;
     pointer-events:none;
+    z-index:1;
 }
-
 .bubble{
     position:absolute;
     border-radius:50%;
@@ -69,19 +64,16 @@ header p{margin-top:10px;font-size:1.2rem}
     filter:blur(2px);
     animation:move 25s infinite alternate ease-in-out;
 }
-
-.b1{width:160px;height:160px;top:60%;left:10%;animation-duration:28s}
-.b2{width:240px;height:240px;top:20%;left:70%;animation-duration:35s}
-.b3{width:200px;height:200px;top:70%;left:80%;animation-duration:30s}
-.b4{width:280px;height:280px;top:10%;left:30%;animation-duration:40s}
-.b5{width:140px;height:140px;top:45%;left:50%;animation-duration:26s}
+.b1{width:160px;height:160px;top:60%;left:10%}
+.b2{width:240px;height:240px;top:20%;left:70%}
+.b3{width:200px;height:200px;top:70%;left:80%}
+.b4{width:280px;height:280px;top:10%;left:30%}
+.b5{width:140px;height:140px;top:45%;left:50%}
 
 @keyframes move{
     0%{transform:translate(0,0)}
-    25%{transform:translate(60px,-40px)}
-    50%{transform:translate(-50px,60px)}
-    75%{transform:translate(40px,30px)}
-    100%{transform:translate(-60px,-50px)}
+    50%{transform:translate(60px,-40px)}
+    100%{transform:translate(-60px,40px)}
 }
 
 /* OFFRES */
@@ -113,8 +105,6 @@ header p{margin-top:10px;font-size:1.2rem}
     color:white;
     cursor:pointer;
 }
-
-/* RUPTURE */
 .out{opacity:0.6}
 .out button{background:#374151;cursor:not-allowed}
 .badge{
@@ -122,17 +112,51 @@ header p{margin-top:10px;font-size:1.2rem}
     top:15px;
     right:15px;
     background:#dc2626;
-    color:white;
     padding:5px 10px;
     border-radius:6px;
     font-size:0.75rem;
 }
 
-/* FEATURES */
-.features{
+/* CONTACT */
+.contact{
     background:#111827;
+    padding:60px 20px;
     text-align:center;
-    padding:50px 20px;
+}
+.contact h3{
+    font-size:2rem;
+    margin-bottom:20px;
+}
+.contact form{
+    max-width:500px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+.contact input,
+.contact textarea{
+    padding:14px;
+    border-radius:8px;
+    border:none;
+    background:#1f2933;
+    color:white;
+    font-size:1rem;
+}
+.contact textarea{resize:none;height:120px}
+.contact button{
+    background:#4f46e5;
+    border:none;
+    padding:14px;
+    border-radius:8px;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+}
+.contact .success{
+    margin-top:15px;
+    color:#22c55e;
+    display:none;
 }
 
 /* FOOTER */
@@ -174,9 +198,8 @@ footer{
     pointer-events:none;
     animation:fire 0.8s ease-out forwards;
 }
-
 @keyframes fire{
-    from{transform:translate(0,0);opacity:1}
+    from{opacity:1}
     to{transform:translate(var(--x),var(--y));opacity:0}
 }
 </style>
@@ -186,8 +209,8 @@ footer{
 <nav>
 <div class="logo">Vioxa Hébergement</div>
 <ul>
-    <li><a href="#">Discord</a></li>
-    <li><a href="#">Panel</a></li>
+<li><a href="#">Discord</a></li>
+<li><a href="#">Panel</a></li>
 </ul>
 </nav>
 
@@ -203,21 +226,15 @@ footer{
 <span class="bubble b4"></span>
 <span class="bubble b5"></span>
 </div>
-
 <h1>Vioxa Hébergement</h1>
 <p>Hébergement Minecraft performant et pas cher 🚀</p>
 </header>
 
 <section class="pricing">
-
 <div class="plan">
 <h2>Starter — 4 Go</h2>
 <div class="price">5,99€</div>
-<ul>
-<li>4 Go RAM</li>
-<li>Slots illimités</li>
-<li>Backups automatiques</li>
-</ul>
+<ul><li>4 Go RAM</li><li>Slots illimités</li></ul>
 <button>Commander</button>
 </div>
 
@@ -225,11 +242,7 @@ footer{
 <div class="badge">RUPTURE</div>
 <h2>Gamer — 12 Go</h2>
 <div class="price">12,99€</div>
-<ul>
-<li>12 Go RAM</li>
-<li>Mods & Plugins</li>
-<li>Support prioritaire</li>
-</ul>
+<ul><li>12 Go RAM</li><li>Mods & Plugins</li></ul>
 <button disabled>Indisponible</button>
 </div>
 
@@ -237,21 +250,23 @@ footer{
 <div class="badge">RUPTURE</div>
 <h2>Pro — 32 Go</h2>
 <div class="price">24,99€</div>
-<ul>
-<li>32 Go RAM</li>
-<li>Protection DDoS</li>
-<li>Support 24/7</li>
-</ul>
+<ul><li>32 Go RAM</li><li>DDoS</li></ul>
 <button disabled>Indisponible</button>
 </div>
-
 </section>
 
-<section class="features">
-<h3>Pourquoi choisir Vioxa Hébergement ?</h3>
-<p>⚡ Performances élevées</p>
-<p>🛡️ Sécurité incluse</p>
-<p>🎮 Panel simple</p>
+<!-- CONTACT -->
+<section class="contact">
+<h3>Nous contacter</h3>
+<form onsubmit="sendContact(event)">
+<input type="text" placeholder="Votre nom" required>
+<input type="email" placeholder="Votre email" required>
+<textarea placeholder="Votre message..." required></textarea>
+<button type="submit">Envoyer</button>
+</form>
+<div class="success" id="contactSuccess">
+✅ Message envoyé ! Nous vous répondrons rapidement.
+</div>
 </section>
 
 <footer>
@@ -271,21 +286,24 @@ function closeCookie(){
 }
 
 function acceptCookie(e){
-    const btn = e.target;
-    const rect = btn.getBoundingClientRect();
-
-    for(let i=0;i<20;i++){
-        const spark=document.createElement("span");
-        spark.className="firework";
-        spark.style.left=rect.left+rect.width/2+"px";
-        spark.style.top=rect.top+rect.height/2+"px";
-        spark.style.setProperty("--x",(Math.random()*120-60)+"px");
-        spark.style.setProperty("--y",(Math.random()*120-60)+"px");
-        document.body.appendChild(spark);
-        setTimeout(()=>spark.remove(),800);
+    const rect=e.target.getBoundingClientRect();
+    for(let i=0;i<15;i++){
+        const f=document.createElement("span");
+        f.className="firework";
+        f.style.left=rect.left+"px";
+        f.style.top=rect.top+"px";
+        f.style.setProperty("--x",(Math.random()*100-50)+"px");
+        f.style.setProperty("--y",(Math.random()*100-50)+"px");
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),800);
     }
-
     setTimeout(closeCookie,300);
+}
+
+function sendContact(e){
+    e.preventDefault();
+    document.getElementById("contactSuccess").style.display="block";
+    e.target.reset();
 }
 </script>
 
