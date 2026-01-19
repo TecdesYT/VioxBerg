@@ -35,7 +35,6 @@ nav ul li a:hover{color:#4f46e5}
     background:linear-gradient(135deg,#22c55e,#16a34a);
     text-align:center;
     padding:15px;
-    position:relative;
 }
 
 /* HEADER + BULLES */
@@ -55,36 +54,34 @@ header h1, header p{
 header h1{font-size:3rem}
 header p{margin-top:10px;font-size:1.2rem}
 
-/* CONTENEUR BULLES */
+/* BULLES */
 .bubbles{
     position:absolute;
     inset:0;
     z-index:1;
+    pointer-events:none; /* IMPORTANT POUR LES CLICS */
 }
 
-/* BULLE */
 .bubble{
     position:absolute;
     border-radius:50%;
     background:rgba(255,255,255,0.15);
     filter:blur(2px);
-    animation:move 20s infinite alternate ease-in-out;
+    animation:move 25s infinite alternate ease-in-out;
 }
 
-/* TAILLES + POSITIONS */
-.b1{width:140px;height:140px;top:60%;left:10%;animation-duration:26s}
-.b2{width:220px;height:220px;top:20%;left:70%;animation-duration:32s}
-.b3{width:180px;height:180px;top:70%;left:80%;animation-duration:28s}
-.b4{width:260px;height:260px;top:10%;left:30%;animation-duration:35s}
-.b5{width:120px;height:120px;top:40%;left:50%;animation-duration:22s}
+.b1{width:160px;height:160px;top:60%;left:10%;animation-duration:28s}
+.b2{width:240px;height:240px;top:20%;left:70%;animation-duration:35s}
+.b3{width:200px;height:200px;top:70%;left:80%;animation-duration:30s}
+.b4{width:280px;height:280px;top:10%;left:30%;animation-duration:40s}
+.b5{width:140px;height:140px;top:45%;left:50%;animation-duration:26s}
 
-/* MOUVEMENT ALEATOIRE */
 @keyframes move{
-    0%   {transform:translate(0,0)}
-    25%  {transform:translate(60px,-40px)}
-    50%  {transform:translate(-50px,60px)}
-    75%  {transform:translate(40px,30px)}
-    100% {transform:translate(-60px,-50px)}
+    0%{transform:translate(0,0)}
+    25%{transform:translate(60px,-40px)}
+    50%{transform:translate(-50px,60px)}
+    75%{transform:translate(40px,30px)}
+    100%{transform:translate(-60px,-50px)}
 }
 
 /* OFFRES */
@@ -155,7 +152,7 @@ footer{
     padding:20px;
     border-radius:10px;
     max-width:300px;
-    z-index:9999;
+    z-index:10000;
 }
 .cookie button{
     margin-right:10px;
@@ -166,6 +163,22 @@ footer{
 }
 .accept{background:#4f46e5;color:white}
 .refuse{background:#374151;color:white}
+
+/* FEU D'ARTIFICE */
+.firework{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#4f46e5;
+    border-radius:50%;
+    pointer-events:none;
+    animation:fire 0.8s ease-out forwards;
+}
+
+@keyframes fire{
+    from{transform:translate(0,0);opacity:1}
+    to{transform:translate(var(--x),var(--y));opacity:0}
+}
 </style>
 </head>
 <body>
@@ -186,11 +199,11 @@ footer{
 
 <header>
 <div class="bubbles">
-    <span class="bubble b1"></span>
-    <span class="bubble b2"></span>
-    <span class="bubble b3"></span>
-    <span class="bubble b4"></span>
-    <span class="bubble b5"></span>
+<span class="bubble b1"></span>
+<span class="bubble b2"></span>
+<span class="bubble b3"></span>
+<span class="bubble b4"></span>
+<span class="bubble b5"></span>
 </div>
 
 <h1>Vioxa Hébergement</h1>
@@ -247,11 +260,36 @@ footer{
 © 2026 Vioxa Hébergement — Tous droits réservés
 </footer>
 
-<div class="cookie">
+<!-- COOKIES -->
+<div class="cookie" id="cookieBox">
 <p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
-<button class="accept">Accepter</button>
-<button class="refuse">Refuser</button>
+<button class="accept" onclick="acceptCookie(event)">Accepter</button>
+<button class="refuse" onclick="closeCookie()">Refuser</button>
 </div>
+
+<script>
+function closeCookie(){
+    document.getElementById("cookieBox").style.display="none";
+}
+
+function acceptCookie(e){
+    const btn = e.target;
+    const rect = btn.getBoundingClientRect();
+
+    for(let i=0;i<20;i++){
+        const spark=document.createElement("span");
+        spark.className="firework";
+        spark.style.left=rect.left+rect.width/2+"px";
+        spark.style.top=rect.top+rect.height/2+"px";
+        spark.style.setProperty("--x",(Math.random()*120-60)+"px");
+        spark.style.setProperty("--y",(Math.random()*120-60)+"px");
+        document.body.appendChild(spark);
+        setTimeout(()=>spark.remove(),800);
+    }
+
+    setTimeout(closeCookie,300);
+}
+</script>
 
 </body>
 </html>
