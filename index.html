@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vioxa Hébergement | Inscription</title>
+<title>Vioxa Hébergement</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
     font-family:'Segoe UI',Tahoma,sans-serif;
     background:#0d1117;
@@ -23,48 +22,111 @@ nav{
     align-items:center;
 }
 .logo{color:#4f46e5;font-weight:bold;font-size:1.4rem}
-nav ul{list-style:none;display:flex;gap:20px}
-nav a{
+nav ul{list-style:none;display:flex;gap:15px;align-items:center}
+nav a, nav button{
     color:white;
-    text-decoration:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-size:1rem;
     padding:8px 14px;
     border-radius:6px;
 }
-nav a:hover{background:#1f2933}
+nav a:hover, nav button:hover{background:#1f2933}
 
-/* AUTH */
-.auth{
-    padding:60px 20px;
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    flex-wrap:wrap;
+/* PROMO */
+.promo{
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    text-align:center;
+    padding:15px;
 }
 
-.card{
+/* HEADER */
+header{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#1f6feb,#4f46e5);
+    padding:90px 20px;
+    text-align:center;
+}
+header h1{font-size:3rem}
+header p{margin-top:10px;font-size:1.2rem}
+
+/* OFFRES */
+.pricing{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    padding:60px 20px;
+}
+.plan{
+    background:#161b22;
+    border-radius:12px;
+    padding:30px;
+    width:300px;
+    text-align:center;
+    border:2px solid #2d333b;
+    position:relative;
+}
+.plan h2{font-size:1.8rem}
+.price{font-size:2.4rem;color:#4f46e5;margin:20px 0}
+.plan ul{list-style:none;margin-bottom:25px}
+.plan ul li{margin:10px 0}
+.plan button{
+    background:#4f46e5;
+    border:none;
+    padding:14px 25px;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+}
+.out{opacity:.6}
+.out button{background:#374151;cursor:not-allowed}
+.badge{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#dc2626;
+    padding:5px 10px;
+    border-radius:6px;
+    font-size:.75rem;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    color:#9ca3af;
+}
+
+/* MODAL AUTH */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+.modal-content{
     background:#161b22;
     padding:30px;
     border-radius:12px;
-    width:300px;
-    border:1px solid #2d333b;
+    width:320px;
 }
-
-.card h2{
-    margin-bottom:15px;
-    text-align:center;
-}
-
-.card input{
+.modal h3{text-align:center;margin-bottom:15px}
+.modal input{
     width:100%;
     padding:12px;
-    margin-bottom:12px;
+    margin-bottom:10px;
     border-radius:6px;
     border:none;
     background:#0d1117;
     color:white;
 }
-
-.card button{
+.modal button{
     width:100%;
     padding:12px;
     border:none;
@@ -73,38 +135,16 @@ nav a:hover{background:#1f2933}
     color:white;
     cursor:pointer;
 }
-
-.card button:hover{background:#3730a3}
-
-.msg{
-    font-size:0.9rem;
+.modal .switch{
     margin-top:10px;
     text-align:center;
+    font-size:.9rem;
+    cursor:pointer;
+    color:#93c5fd;
 }
+.msg{text-align:center;font-size:.9rem;margin-top:10px}
 .success{color:#22c55e}
 .error{color:#ef4444}
-
-/* USER */
-.user{
-    text-align:center;
-    padding:40px;
-    display:none;
-}
-
-.user span{
-    color:#4f46e5;
-    font-weight:bold;
-}
-
-.logout{
-    margin-top:15px;
-    padding:10px 20px;
-    background:#dc2626;
-    border:none;
-    color:white;
-    border-radius:6px;
-    cursor:pointer;
-}
 </style>
 </head>
 <body>
@@ -114,99 +154,104 @@ nav a:hover{background:#1f2933}
 <ul>
 <li><a href="#">Discord</a></li>
 <li><a href="#">Panel</a></li>
+<li id="authBtn"></li>
 </ul>
 </nav>
 
-<!-- CONNECTÉ -->
-<div class="user" id="userBox">
-<p>👤 Connecté en tant que <span id="userName"></span></p>
-<button class="logout" onclick="logout()">Se déconnecter</button>
+<div class="promo">
+🎉 Code <strong>BIENVENUE</strong> : <strong>-10%</strong> (1 seule fois)
 </div>
 
-<!-- AUTH -->
-<section class="auth" id="authBox">
+<header>
+<h1>Vioxa Hébergement</h1>
+<p>Hébergement Minecraft performant et pas cher 🚀</p>
+</header>
 
-<!-- INSCRIPTION -->
-<div class="card">
-<h2>Inscription</h2>
-<input type="text" id="regUser" placeholder="Pseudo">
-<input type="email" id="regEmail" placeholder="Email">
-<input type="password" id="regPass" placeholder="Mot de passe">
-<button onclick="register()">S'inscrire</button>
-<div class="msg" id="regMsg"></div>
+<section class="pricing">
+<div class="plan">
+<h2>Starter — 4 Go</h2>
+<div class="price">5,99€</div>
+<ul><li>4 Go RAM</li><li>Slots illimités</li></ul>
+<button>Commander</button>
 </div>
 
-<!-- CONNEXION -->
-<div class="card">
-<h2>Connexion</h2>
-<input type="text" id="logUser" placeholder="Pseudo">
-<input type="password" id="logPass" placeholder="Mot de passe">
-<button onclick="login()">Se connecter</button>
-<div class="msg" id="logMsg"></div>
+<div class="plan out">
+<div class="badge">RUPTURE</div>
+<h2>Gamer — 12 Go</h2>
+<div class="price">12,99€</div>
+<ul><li>12 Go RAM</li></ul>
+<button disabled>Indisponible</button>
 </div>
 
+<div class="plan out">
+<div class="badge">RUPTURE</div>
+<h2>Pro — 32 Go</h2>
+<div class="price">24,99€</div>
+<ul><li>32 Go RAM</li></ul>
+<button disabled>Indisponible</button>
+</div>
 </section>
 
+<footer>
+© 2026 Vioxa Hébergement — Tous droits réservés
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3 id="modalTitle">Inscription</h3>
+<input id="user" placeholder="Pseudo">
+<input id="email" placeholder="Email">
+<input id="pass" type="password" placeholder="Mot de passe">
+<button onclick="submitAuth()">Valider</button>
+<div class="msg" id="msg"></div>
+<div class="switch" onclick="switchMode()">Déjà un compte ? Se connecter</div>
+</div>
+</div>
+
 <script>
-// Vérifie si déjà connecté
-const currentUser = localStorage.getItem("loggedUser");
-if(currentUser){
-    showUser(currentUser);
+let mode="register";
+
+function updateNavbar(){
+    const authBtn=document.getElementById("authBtn");
+    const user=localStorage.getItem("loggedUser");
+    authBtn.innerHTML = user
+        ? `<button onclick="logout()">Se déconnecter</button>`
+        : `<button onclick="openModal()">S'inscrire</button>`;
+}
+updateNavbar();
+
+function openModal(){
+    modal.style.display="flex";
+}
+modal.onclick=e=>{if(e.target===modal)modal.style.display="none"}
+
+function switchMode(){
+    mode = mode==="register"?"login":"register";
+    modalTitle.textContent = mode==="register"?"Inscription":"Connexion";
+    email.style.display = mode==="login"?"none":"block";
 }
 
-function register(){
-    const user = regUser.value;
-    const email = regEmail.value;
-    const pass = regPass.value;
-
-    if(!user || !email || !pass){
-        regMsg.innerHTML = "Tous les champs sont requis";
-        regMsg.className = "msg error";
-        return;
+function submitAuth(){
+    const u=user.value,p=pass.value,e=email.value;
+    if(!u||!p||(mode==="register"&&!e)){
+        msg.textContent="Champs manquants";msg.className="msg error";return;
     }
-
-    if(localStorage.getItem("user_"+user)){
-        regMsg.innerHTML = "Pseudo déjà utilisé";
-        regMsg.className = "msg error";
-        return;
+    if(mode==="register"){
+        localStorage.setItem("user_"+u,JSON.stringify({e,p}));
+        msg.textContent="Compte créé ✔";msg.className="msg success";
+    }else{
+        const d=JSON.parse(localStorage.getItem("user_"+u)||"null");
+        if(!d||d.p!==p){msg.textContent="Erreur connexion";msg.className="msg error";return;}
+        localStorage.setItem("loggedUser",u);
+        modal.style.display="none";
+        updateNavbar();
     }
-
-    localStorage.setItem("user_"+user, JSON.stringify({email,pass}));
-    regMsg.innerHTML = "Compte créé avec succès ✔";
-    regMsg.className = "msg success";
-}
-
-function login(){
-    const user = logUser.value;
-    const pass = logPass.value;
-    const data = localStorage.getItem("user_"+user);
-
-    if(!data){
-        logMsg.innerHTML = "Compte introuvable";
-        logMsg.className = "msg error";
-        return;
-    }
-
-    const parsed = JSON.parse(data);
-    if(parsed.pass !== pass){
-        logMsg.innerHTML = "Mot de passe incorrect";
-        logMsg.className = "msg error";
-        return;
-    }
-
-    localStorage.setItem("loggedUser", user);
-    showUser(user);
-}
-
-function showUser(user){
-    authBox.style.display = "none";
-    userBox.style.display = "block";
-    userName.textContent = user;
 }
 
 function logout(){
     localStorage.removeItem("loggedUser");
-    location.reload();
+    updateNavbar();
 }
 </script>
 
