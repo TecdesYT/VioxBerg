@@ -1,312 +1,265 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vioxa Hébergement | Serveurs Minecraft</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vioxa Hébergement | Serveurs Minecraft</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #0d1117;
-            color: #ffffff;
-        }
+body{
+    font-family:'Segoe UI',Tahoma,sans-serif;
+    background:#0d1117;
+    color:#fff;
+}
 
-        /* NAVBAR */
-        nav {
-            background: #111827;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+/* NAVBAR */
+nav{
+    background:#111827;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+nav .logo{color:#4f46e5;font-weight:bold;font-size:1.4rem}
+nav ul{list-style:none;display:flex;gap:25px}
+nav ul li a{color:#fff;text-decoration:none}
+nav ul li a:hover{color:#4f46e5}
 
-        nav .logo {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #4f46e5;
-        }
+/* PROMO */
+.promo{
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    text-align:center;
+    padding:15px;
+    position:relative;
+}
+.promo button{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:none;
+    color:white;
+    font-size:1.2rem;
+    cursor:pointer;
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#1f6feb,#4f46e5);
+    padding:60px 20px;
+    text-align:center;
+}
+header h1{font-size:3rem}
+header p{margin-top:10px;font-size:1.2rem}
 
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-        }
+/* OFFRES */
+.pricing{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    padding:60px 20px;
+}
+.plan{
+    background:#161b22;
+    border-radius:12px;
+    padding:30px;
+    width:300px;
+    text-align:center;
+    border:2px solid #2d333b;
+    position:relative;
+}
+.plan h2{font-size:1.8rem}
+.price{font-size:2.4rem;color:#4f46e5;margin:20px 0}
+.plan ul{list-style:none;margin-bottom:25px}
+.plan ul li{margin:10px 0}
+.plan button{
+    background:#4f46e5;
+    border:none;
+    padding:14px 25px;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+}
 
-        nav ul li a:hover {
-            color: #4f46e5;
-        }
+/* RUPTURE */
+.out{opacity:0.6}
+.out button{background:#374151;cursor:not-allowed}
+.badge{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#dc2626;
+    color:white;
+    padding:5px 10px;
+    border-radius:6px;
+    font-size:0.75rem;
+}
 
-        /* PROMO */
-        .promo {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            text-align: center;
-            padding: 15px 20px;
-            position: relative;
-        }
+/* FEATURES */
+.features{
+    background:#111827;
+    text-align:center;
+    padding:50px 20px;
+}
 
-        .promo button {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    color:#9ca3af;
+}
 
-        /* HEADER */
-        header {
-            background: linear-gradient(135deg, #1f6feb, #4f46e5);
-            padding: 60px 20px;
-            text-align: center;
-        }
+/* COOKIES */
+.cookie{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    background:#161b22;
+    border:1px solid #2d333b;
+    padding:20px;
+    border-radius:10px;
+    max-width:300px;
+    z-index:9999;
+}
+.cookie button{
+    margin-right:10px;
+    padding:8px 15px;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+}
+.accept{background:#4f46e5;color:white}
+.refuse{background:#374151;color:white}
 
-        header h1 {
-            font-size: 3rem;
-        }
+/* PARTICULES */
+.particle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#4f46e5;
+    border-radius:50%;
+    pointer-events:none;
+    animation:explode 0.8s ease-out forwards;
+}
 
-        header p {
-            margin-top: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* OFFRES */
-        .pricing {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            padding: 60px 20px;
-        }
-
-        .plan {
-            background: #161b22;
-            border-radius: 12px;
-            padding: 30px;
-            width: 300px;
-            text-align: center;
-            border: 2px solid #2d333b;
-            position: relative;
-            transition: 0.3s;
-        }
-
-        .plan:hover {
-            transform: translateY(-8px);
-            border-color: #4f46e5;
-        }
-
-        .plan h2 {
-            font-size: 1.8rem;
-        }
-
-        .price {
-            font-size: 2.4rem;
-            color: #4f46e5;
-            margin: 20px 0;
-        }
-
-        .plan ul {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-
-        .plan ul li {
-            margin: 10px 0;
-        }
-
-        .plan button {
-            background: #4f46e5;
-            border: none;
-            padding: 14px 25px;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-        }
-
-        .plan button:hover {
-            background: #3730a3;
-        }
-
-        /* RUPTURE */
-        .out {
-            opacity: 0.6;
-        }
-
-        .out button {
-            background: #374151;
-            cursor: not-allowed;
-        }
-
-        .badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #dc2626;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-
-        /* FEATURES */
-        .features {
-            background: #111827;
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #9ca3af;
-            font-size: 0.9rem;
-        }
-
-        /* COOKIES */
-        .cookie {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #161b22;
-            border: 1px solid #2d333b;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 300px;
-            z-index: 9999;
-        }
-
-        .cookie button {
-            margin-right: 10px;
-            padding: 8px 15px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .accept {
-            background: #4f46e5;
-            color: white;
-        }
-
-        .refuse {
-            background: #374151;
-            color: white;
-        }
-    </style>
+@keyframes explode{
+    from{transform:translate(0,0);opacity:1}
+    to{transform:translate(var(--x),var(--y));opacity:0}
+}
+</style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
     <div class="logo">Vioxa Hébergement</div>
     <ul>
         <li><a href="#">Accueil</a></li>
         <li><a href="#offres">Offres</a></li>
-        <li><a href="https://discord.gg/TONDISCORD" target="_blank">Discord</a></li>
-        <li><a href="https://panel.tonsite.fr" target="_blank">Panel</a></li>
+        <li><a href="#">Discord</a></li>
+        <li><a href="#">Panel</a></li>
     </ul>
 </nav>
 
-<!-- PROMO -->
 <div class="promo" id="promoBox">
-    🎉 <strong>OFFRE DE BIENVENUE</strong> — Code <strong>BIENVENUE</strong> :
-    <strong>-10%</strong> (utilisable 1 seule fois)
-    <button onclick="closePromo()">✖</button>
+🎉 Code <strong>BIENVENUE</strong> : <strong>-10%</strong> (1 seule fois)
+<button onclick="closePromo()">✖</button>
 </div>
 
-<!-- HEADER -->
 <header>
-    <h1>Vioxa Hébergement</h1>
-    <p>Hébergement Minecraft performant et pas cher 🚀</p>
+<h1>Vioxa Hébergement</h1>
+<p>Hébergement Minecraft performant et pas cher 🚀</p>
 </header>
 
-<!-- OFFRES -->
 <section class="pricing" id="offres">
 
-    <!-- DISPONIBLE -->
-    <div class="plan">
-        <h2>Starter — 4 Go</h2>
-        <div class="price">5,99€</div>
-        <ul>
-            <li>4 Go RAM</li>
-            <li>Slots illimités</li>
-            <li>Backups automatiques</li>
-        </ul>
-        <button>Commander</button>
-    </div>
+<div class="plan">
+<h2>Starter — 4 Go</h2>
+<div class="price">5,99€</div>
+<ul>
+<li>4 Go RAM</li>
+<li>Slots illimités</li>
+<li>Backups automatiques</li>
+</ul>
+<button>Commander</button>
+</div>
 
-    <!-- RUPTURE 12GO -->
-    <div class="plan out">
-        <div class="badge">RUPTURE</div>
-        <h2>Gamer — 12 Go</h2>
-        <div class="price">12,99€</div>
-        <ul>
-            <li>12 Go RAM</li>
-            <li>Mods & Plugins</li>
-            <li>Support prioritaire</li>
-        </ul>
-        <button disabled>Indisponible</button>
-    </div>
+<div class="plan out">
+<div class="badge">RUPTURE</div>
+<h2>Gamer — 12 Go</h2>
+<div class="price">12,99€</div>
+<ul>
+<li>12 Go RAM</li>
+<li>Mods & Plugins</li>
+<li>Support prioritaire</li>
+</ul>
+<button disabled>Indisponible</button>
+</div>
 
-    <!-- RUPTURE 32GO -->
-    <div class="plan out">
-        <div class="badge">RUPTURE</div>
-        <h2>Pro — 32 Go</h2>
-        <div class="price">24,99€</div>
-        <ul>
-            <li>32 Go RAM</li>
-            <li>Protection DDoS</li>
-            <li>Support 24/7</li>
-        </ul>
-        <button disabled>Indisponible</button>
-    </div>
+<div class="plan out">
+<div class="badge">RUPTURE</div>
+<h2>Pro — 32 Go</h2>
+<div class="price">24,99€</div>
+<ul>
+<li>32 Go RAM</li>
+<li>Protection DDoS</li>
+<li>Support 24/7</li>
+</ul>
+<button disabled>Indisponible</button>
+</div>
 
 </section>
 
 <section class="features">
-    <h3>Pourquoi choisir Vioxa Hébergement ?</h3>
-    <p>⚡ Performances élevées</p>
-    <p>🛡️ Sécurité incluse</p>
-    <p>🎮 Panel simple et rapide</p>
+<h3>Pourquoi choisir Vioxa Hébergement ?</h3>
+<p>⚡ Performances élevées</p>
+<p>🛡️ Sécurité incluse</p>
+<p>🎮 Panel simple</p>
 </section>
 
 <footer>
-    © 2026 Vioxa Hébergement — Tous droits réservés
+© 2026 Vioxa Hébergement — Tous droits réservés
 </footer>
 
 <!-- COOKIES -->
 <div class="cookie" id="cookieBox">
-    <p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
-    <button class="accept" onclick="closeCookie()">Accepter</button>
-    <button class="refuse" onclick="closeCookie()">Refuser</button>
+<p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
+<button class="accept" onclick="acceptCookie(event)">Accepter</button>
+<button class="refuse" onclick="closeCookie()">Refuser</button>
 </div>
 
 <script>
-    function closeCookie() {
-        document.getElementById("cookieBox").style.display = "none";
+function closePromo(){
+    document.getElementById("promoBox").style.display="none";
+}
+
+function closeCookie(){
+    document.getElementById("cookieBox").style.display="none";
+}
+
+function acceptCookie(e){
+    const btn = e.target;
+    const rect = btn.getBoundingClientRect();
+
+    for(let i=0;i<15;i++){
+        const p=document.createElement("span");
+        p.className="particle";
+        p.style.left=(rect.left+rect.width/2)+"px";
+        p.style.top=(rect.top+rect.height/2)+"px";
+        p.style.setProperty("--x",(Math.random()*120-60)+"px");
+        p.style.setProperty("--y",(Math.random()*120-60)+"px");
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),800);
     }
 
-    function closePromo() {
-        document.getElementById("promoBox").style.display = "none";
-    }
+    setTimeout(closeCookie,300);
+}
 </script>
 
 </body>
