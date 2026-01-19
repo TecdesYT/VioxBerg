@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vioxa Hébergement | Serveurs Minecraft</title>
+<title>Vioxa Hébergement | Inscription</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -21,186 +21,89 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    position:sticky;
-    top:0;
-    z-index:1000;
 }
-nav .logo{color:#4f46e5;font-weight:bold;font-size:1.4rem}
-nav ul{list-style:none;display:flex;gap:25px}
-nav ul li a{color:#fff;text-decoration:none}
-nav ul li a:hover{color:#4f46e5}
-
-/* PROMO */
-.promo{
-    background:linear-gradient(135deg,#22c55e,#16a34a);
-    text-align:center;
-    padding:15px;
+.logo{color:#4f46e5;font-weight:bold;font-size:1.4rem}
+nav ul{list-style:none;display:flex;gap:20px}
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:6px;
 }
+nav a:hover{background:#1f2933}
 
-/* HEADER + BULLES */
-header{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(135deg,#1f6feb,#4f46e5);
-    padding:90px 20px;
-    text-align:center;
-}
-
-header h1, header p{position:relative;z-index:2}
-header h1{font-size:3rem}
-header p{margin-top:10px;font-size:1.2rem}
-
-/* BULLES */
-.bubbles{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    z-index:1;
-}
-.bubble{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,0.15);
-    filter:blur(2px);
-    animation:move 25s infinite alternate ease-in-out;
-}
-.b1{width:160px;height:160px;top:60%;left:10%}
-.b2{width:240px;height:240px;top:20%;left:70%}
-.b3{width:200px;height:200px;top:70%;left:80%}
-.b4{width:280px;height:280px;top:10%;left:30%}
-.b5{width:140px;height:140px;top:45%;left:50%}
-
-@keyframes move{
-    0%{transform:translate(0,0)}
-    50%{transform:translate(60px,-40px)}
-    100%{transform:translate(-60px,40px)}
-}
-
-/* OFFRES */
-.pricing{
+/* AUTH */
+.auth{
+    padding:60px 20px;
     display:flex;
     justify-content:center;
-    gap:30px;
+    gap:40px;
     flex-wrap:wrap;
-    padding:60px 20px;
-}
-.plan{
-    background:#161b22;
-    border-radius:12px;
-    padding:30px;
-    width:300px;
-    text-align:center;
-    border:2px solid #2d333b;
-    position:relative;
-}
-.plan h2{font-size:1.8rem}
-.price{font-size:2.4rem;color:#4f46e5;margin:20px 0}
-.plan ul{list-style:none;margin-bottom:25px}
-.plan ul li{margin:10px 0}
-.plan button{
-    background:#4f46e5;
-    border:none;
-    padding:14px 25px;
-    border-radius:8px;
-    color:white;
-    cursor:pointer;
-}
-.out{opacity:0.6}
-.out button{background:#374151;cursor:not-allowed}
-.badge{
-    position:absolute;
-    top:15px;
-    right:15px;
-    background:#dc2626;
-    padding:5px 10px;
-    border-radius:6px;
-    font-size:0.75rem;
 }
 
-/* CONTACT */
-.contact{
-    background:#111827;
-    padding:60px 20px;
+.card{
+    background:#161b22;
+    padding:30px;
+    border-radius:12px;
+    width:300px;
+    border:1px solid #2d333b;
+}
+
+.card h2{
+    margin-bottom:15px;
     text-align:center;
 }
-.contact h3{
-    font-size:2rem;
-    margin-bottom:20px;
-}
-.contact form{
-    max-width:500px;
-    margin:0 auto;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-.contact input,
-.contact textarea{
-    padding:14px;
-    border-radius:8px;
+
+.card input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:6px;
     border:none;
-    background:#1f2933;
+    background:#0d1117;
     color:white;
-    font-size:1rem;
 }
-.contact textarea{resize:none;height:120px}
-.contact button{
+
+.card button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:6px;
     background:#4f46e5;
-    border:none;
-    padding:14px;
-    border-radius:8px;
     color:white;
-    font-size:1rem;
     cursor:pointer;
 }
-.contact .success{
-    margin-top:15px;
-    color:#22c55e;
+
+.card button:hover{background:#3730a3}
+
+.msg{
+    font-size:0.9rem;
+    margin-top:10px;
+    text-align:center;
+}
+.success{color:#22c55e}
+.error{color:#ef4444}
+
+/* USER */
+.user{
+    text-align:center;
+    padding:40px;
     display:none;
 }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:20px;
-    color:#9ca3af;
+.user span{
+    color:#4f46e5;
+    font-weight:bold;
 }
 
-/* COOKIES */
-.cookie{
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    background:#161b22;
-    border:1px solid #2d333b;
-    padding:20px;
-    border-radius:10px;
-    max-width:300px;
-    z-index:10000;
-}
-.cookie button{
-    margin-right:10px;
-    padding:8px 15px;
-    border-radius:6px;
+.logout{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#dc2626;
     border:none;
+    color:white;
+    border-radius:6px;
     cursor:pointer;
-}
-.accept{background:#4f46e5;color:white}
-.refuse{background:#374151;color:white}
-
-/* FEU D'ARTIFICE */
-.firework{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:#4f46e5;
-    border-radius:50%;
-    pointer-events:none;
-    animation:fire 0.8s ease-out forwards;
-}
-@keyframes fire{
-    from{opacity:1}
-    to{transform:translate(var(--x),var(--y));opacity:0}
 }
 </style>
 </head>
@@ -214,96 +117,96 @@ footer{
 </ul>
 </nav>
 
-<div class="promo">
-🎉 Code <strong>BIENVENUE</strong> : <strong>-10%</strong> (1 seule fois)
+<!-- CONNECTÉ -->
+<div class="user" id="userBox">
+<p>👤 Connecté en tant que <span id="userName"></span></p>
+<button class="logout" onclick="logout()">Se déconnecter</button>
 </div>
 
-<header>
-<div class="bubbles">
-<span class="bubble b1"></span>
-<span class="bubble b2"></span>
-<span class="bubble b3"></span>
-<span class="bubble b4"></span>
-<span class="bubble b5"></span>
-</div>
-<h1>Vioxa Hébergement</h1>
-<p>Hébergement Minecraft performant et pas cher 🚀</p>
-</header>
+<!-- AUTH -->
+<section class="auth" id="authBox">
 
-<section class="pricing">
-<div class="plan">
-<h2>Starter — 4 Go</h2>
-<div class="price">5,99€</div>
-<ul><li>4 Go RAM</li><li>Slots illimités</li></ul>
-<button>Commander</button>
+<!-- INSCRIPTION -->
+<div class="card">
+<h2>Inscription</h2>
+<input type="text" id="regUser" placeholder="Pseudo">
+<input type="email" id="regEmail" placeholder="Email">
+<input type="password" id="regPass" placeholder="Mot de passe">
+<button onclick="register()">S'inscrire</button>
+<div class="msg" id="regMsg"></div>
 </div>
 
-<div class="plan out">
-<div class="badge">RUPTURE</div>
-<h2>Gamer — 12 Go</h2>
-<div class="price">12,99€</div>
-<ul><li>12 Go RAM</li><li>Mods & Plugins</li></ul>
-<button disabled>Indisponible</button>
+<!-- CONNEXION -->
+<div class="card">
+<h2>Connexion</h2>
+<input type="text" id="logUser" placeholder="Pseudo">
+<input type="password" id="logPass" placeholder="Mot de passe">
+<button onclick="login()">Se connecter</button>
+<div class="msg" id="logMsg"></div>
 </div>
 
-<div class="plan out">
-<div class="badge">RUPTURE</div>
-<h2>Pro — 32 Go</h2>
-<div class="price">24,99€</div>
-<ul><li>32 Go RAM</li><li>DDoS</li></ul>
-<button disabled>Indisponible</button>
-</div>
 </section>
-
-<!-- CONTACT -->
-<section class="contact">
-<h3>Nous contacter</h3>
-<form onsubmit="sendContact(event)">
-<input type="text" placeholder="Votre nom" required>
-<input type="email" placeholder="Votre email" required>
-<textarea placeholder="Votre message..." required></textarea>
-<button type="submit">Envoyer</button>
-</form>
-<div class="success" id="contactSuccess">
-✅ Message envoyé ! Nous vous répondrons rapidement.
-</div>
-</section>
-
-<footer>
-© 2026 Vioxa Hébergement — Tous droits réservés
-</footer>
-
-<!-- COOKIES -->
-<div class="cookie" id="cookieBox">
-<p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
-<button class="accept" onclick="acceptCookie(event)">Accepter</button>
-<button class="refuse" onclick="closeCookie()">Refuser</button>
-</div>
 
 <script>
-function closeCookie(){
-    document.getElementById("cookieBox").style.display="none";
+// Vérifie si déjà connecté
+const currentUser = localStorage.getItem("loggedUser");
+if(currentUser){
+    showUser(currentUser);
 }
 
-function acceptCookie(e){
-    const rect=e.target.getBoundingClientRect();
-    for(let i=0;i<15;i++){
-        const f=document.createElement("span");
-        f.className="firework";
-        f.style.left=rect.left+"px";
-        f.style.top=rect.top+"px";
-        f.style.setProperty("--x",(Math.random()*100-50)+"px");
-        f.style.setProperty("--y",(Math.random()*100-50)+"px");
-        document.body.appendChild(f);
-        setTimeout(()=>f.remove(),800);
+function register(){
+    const user = regUser.value;
+    const email = regEmail.value;
+    const pass = regPass.value;
+
+    if(!user || !email || !pass){
+        regMsg.innerHTML = "Tous les champs sont requis";
+        regMsg.className = "msg error";
+        return;
     }
-    setTimeout(closeCookie,300);
+
+    if(localStorage.getItem("user_"+user)){
+        regMsg.innerHTML = "Pseudo déjà utilisé";
+        regMsg.className = "msg error";
+        return;
+    }
+
+    localStorage.setItem("user_"+user, JSON.stringify({email,pass}));
+    regMsg.innerHTML = "Compte créé avec succès ✔";
+    regMsg.className = "msg success";
 }
 
-function sendContact(e){
-    e.preventDefault();
-    document.getElementById("contactSuccess").style.display="block";
-    e.target.reset();
+function login(){
+    const user = logUser.value;
+    const pass = logPass.value;
+    const data = localStorage.getItem("user_"+user);
+
+    if(!data){
+        logMsg.innerHTML = "Compte introuvable";
+        logMsg.className = "msg error";
+        return;
+    }
+
+    const parsed = JSON.parse(data);
+    if(parsed.pass !== pass){
+        logMsg.innerHTML = "Mot de passe incorrect";
+        logMsg.className = "msg error";
+        return;
+    }
+
+    localStorage.setItem("loggedUser", user);
+    showUser(user);
+}
+
+function showUser(user){
+    authBox.style.display = "none";
+    userBox.style.display = "block";
+    userName.textContent = user;
+}
+
+function logout(){
+    localStorage.removeItem("loggedUser");
+    location.reload();
 }
 </script>
 
