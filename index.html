@@ -7,6 +7,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
     font-family:'Segoe UI',Tahoma,sans-serif;
     background:#0d1117;
@@ -20,6 +21,9 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 .logo{color:#4f46e5;font-weight:bold;font-size:1.4rem}
 nav ul{list-style:none;display:flex;gap:15px;align-items:center}
@@ -41,7 +45,7 @@ nav a:hover, nav button:hover{background:#1f2933}
     padding:15px;
 }
 
-/* HEADER */
+/* HEADER + BULLES */
 header{
     position:relative;
     overflow:hidden;
@@ -49,8 +53,34 @@ header{
     padding:90px 20px;
     text-align:center;
 }
+header h1, header p{position:relative;z-index:2}
 header h1{font-size:3rem}
 header p{margin-top:10px;font-size:1.2rem}
+
+.bubbles{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+}
+.bubble{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    filter:blur(2px);
+    animation:move 25s infinite alternate ease-in-out;
+}
+.b1{width:160px;height:160px;top:60%;left:10%}
+.b2{width:240px;height:240px;top:20%;left:70%}
+.b3{width:200px;height:200px;top:70%;left:80%}
+.b4{width:280px;height:280px;top:10%;left:30%}
+.b5{width:140px;height:140px;top:45%;left:50%}
+
+@keyframes move{
+    0%{transform:translate(0,0)}
+    50%{transform:translate(60px,-40px)}
+    100%{transform:translate(-60px,40px)}
+}
 
 /* OFFRES */
 .pricing{
@@ -135,7 +165,7 @@ footer{
     color:white;
     cursor:pointer;
 }
-.modal .switch{
+.switch{
     margin-top:10px;
     text-align:center;
     font-size:.9rem;
@@ -145,6 +175,43 @@ footer{
 .msg{text-align:center;font-size:.9rem;margin-top:10px}
 .success{color:#22c55e}
 .error{color:#ef4444}
+
+/* COOKIES */
+.cookie{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    background:#161b22;
+    border:1px solid #2d333b;
+    padding:20px;
+    border-radius:10px;
+    max-width:300px;
+    z-index:10000;
+}
+.cookie button{
+    margin-right:10px;
+    padding:8px 15px;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+}
+.accept{background:#4f46e5;color:white}
+.refuse{background:#374151;color:white}
+
+/* FEU D'ARTIFICE */
+.firework{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#4f46e5;
+    border-radius:50%;
+    pointer-events:none;
+    animation:fire 0.8s ease-out forwards;
+}
+@keyframes fire{
+    from{opacity:1}
+    to{transform:translate(var(--x),var(--y));opacity:0}
+}
 </style>
 </head>
 <body>
@@ -163,6 +230,13 @@ footer{
 </div>
 
 <header>
+<div class="bubbles">
+<span class="bubble b1"></span>
+<span class="bubble b2"></span>
+<span class="bubble b3"></span>
+<span class="bubble b4"></span>
+<span class="bubble b5"></span>
+</div>
 <h1>Vioxa Hébergement</h1>
 <p>Hébergement Minecraft performant et pas cher 🚀</p>
 </header>
@@ -196,7 +270,7 @@ footer{
 © 2026 Vioxa Hébergement — Tous droits réservés
 </footer>
 
-<!-- MODAL -->
+<!-- MODAL AUTH -->
 <div class="modal" id="modal">
 <div class="modal-content">
 <h3 id="modalTitle">Inscription</h3>
@@ -209,21 +283,26 @@ footer{
 </div>
 </div>
 
-<script>
-let mode="register";
+<!-- COOKIES -->
+<div class="cookie" id="cookieBox">
+<p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
+<button class="accept" onclick="acceptCookie(event)">Accepter</button>
+<button class="refuse" onclick="closeCookie()">Refuser</button>
+</div>
 
+<script>
+/* AUTH */
+let mode="register";
 function updateNavbar(){
-    const authBtn=document.getElementById("authBtn");
-    const user=localStorage.getItem("loggedUser");
-    authBtn.innerHTML = user
+    const b=document.getElementById("authBtn");
+    const u=localStorage.getItem("loggedUser");
+    b.innerHTML = u
         ? `<button onclick="logout()">Se déconnecter</button>`
         : `<button onclick="openModal()">S'inscrire</button>`;
 }
 updateNavbar();
 
-function openModal(){
-    modal.style.display="flex";
-}
+function openModal(){modal.style.display="flex"}
 modal.onclick=e=>{if(e.target===modal)modal.style.display="none"}
 
 function switchMode(){
@@ -248,10 +327,28 @@ function submitAuth(){
         updateNavbar();
     }
 }
-
 function logout(){
     localStorage.removeItem("loggedUser");
     updateNavbar();
+}
+
+/* COOKIES + FEU D'ARTIFICE */
+function closeCookie(){
+    document.getElementById("cookieBox").style.display="none";
+}
+function acceptCookie(e){
+    const r=e.target.getBoundingClientRect();
+    for(let i=0;i<20;i++){
+        const f=document.createElement("span");
+        f.className="firework";
+        f.style.left=r.left+r.width/2+"px";
+        f.style.top=r.top+r.height/2+"px";
+        f.style.setProperty("--x",(Math.random()*120-60)+"px");
+        f.style.setProperty("--y",(Math.random()*120-60)+"px");
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),800);
+    }
+    setTimeout(closeCookie,300);
 }
 </script>
 
