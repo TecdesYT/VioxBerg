@@ -45,7 +45,6 @@
         nav ul li a {
             color: #ffffff;
             text-decoration: none;
-            transition: 0.2s;
         }
 
         nav ul li a:hover {
@@ -55,10 +54,8 @@
         /* PROMO */
         .promo {
             background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #ffffff;
             text-align: center;
             padding: 15px 20px;
-            font-size: 1rem;
             position: relative;
         }
 
@@ -106,6 +103,7 @@
             width: 300px;
             text-align: center;
             border: 2px solid #2d333b;
+            position: relative;
             transition: 0.3s;
         }
 
@@ -146,6 +144,28 @@
             background: #3730a3;
         }
 
+        /* RUPTURE */
+        .out {
+            opacity: 0.6;
+        }
+
+        .out button {
+            background: #374151;
+            cursor: not-allowed;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #dc2626;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
         /* FEATURES */
         .features {
             background: #111827;
@@ -153,12 +173,6 @@
             padding: 50px 20px;
         }
 
-        .features h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        /* FOOTER */
         footer {
             text-align: center;
             padding: 20px;
@@ -179,18 +193,12 @@
             z-index: 9999;
         }
 
-        .cookie p {
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
         .cookie button {
             margin-right: 10px;
             padding: 8px 15px;
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            font-size: 0.85rem;
         }
 
         .accept {
@@ -219,22 +227,21 @@
 
 <!-- PROMO -->
 <div class="promo" id="promoBox">
-    🎉 <strong>OFFRE DE BIENVENUE</strong> —
-    Code <strong>BIENVENUE</strong> :
-    <strong>-10%</strong> sur ta commande
-    (utilisable <strong>1 seule fois</strong>)
+    🎉 <strong>OFFRE DE BIENVENUE</strong> — Code <strong>BIENVENUE</strong> :
+    <strong>-10%</strong> (utilisable 1 seule fois)
     <button onclick="closePromo()">✖</button>
 </div>
 
 <!-- HEADER -->
 <header>
     <h1>Vioxa Hébergement</h1>
-    <p>Hébergement Minecraft puissant, fiable et pas cher 🚀</p>
+    <p>Hébergement Minecraft performant et pas cher 🚀</p>
 </header>
 
 <!-- OFFRES -->
 <section class="pricing" id="offres">
 
+    <!-- DISPONIBLE -->
     <div class="plan">
         <h2>Starter — 4 Go</h2>
         <div class="price">5,99€</div>
@@ -246,7 +253,9 @@
         <button>Commander</button>
     </div>
 
-    <div class="plan">
+    <!-- RUPTURE 12GO -->
+    <div class="plan out">
+        <div class="badge">RUPTURE</div>
         <h2>Gamer — 12 Go</h2>
         <div class="price">12,99€</div>
         <ul>
@@ -254,10 +263,12 @@
             <li>Mods & Plugins</li>
             <li>Support prioritaire</li>
         </ul>
-        <button>Commander</button>
+        <button disabled>Indisponible</button>
     </div>
 
-    <div class="plan">
+    <!-- RUPTURE 32GO -->
+    <div class="plan out">
+        <div class="badge">RUPTURE</div>
         <h2>Pro — 32 Go</h2>
         <div class="price">24,99€</div>
         <ul>
@@ -265,20 +276,18 @@
             <li>Protection DDoS</li>
             <li>Support 24/7</li>
         </ul>
-        <button>Commander</button>
+        <button disabled>Indisponible</button>
     </div>
 
 </section>
 
-<!-- FEATURES -->
 <section class="features">
     <h3>Pourquoi choisir Vioxa Hébergement ?</h3>
     <p>⚡ Performances élevées</p>
-    <p>🛡️ Protection DDoS incluse</p>
+    <p>🛡️ Sécurité incluse</p>
     <p>🎮 Panel simple et rapide</p>
 </section>
 
-<!-- FOOTER -->
 <footer>
     © 2026 Vioxa Hébergement — Tous droits réservés
 </footer>
@@ -290,7 +299,6 @@
     <button class="refuse" onclick="closeCookie()">Refuser</button>
 </div>
 
-<!-- JS -->
 <script>
     function closeCookie() {
         document.getElementById("cookieBox").style.display = "none";
