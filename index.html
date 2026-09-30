@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Pussyending</title>
 
   <style>
@@ -57,6 +58,7 @@
       display: none;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .header-profile img {
@@ -79,12 +81,16 @@
       justify-content: center;
     }
 
+    .account-card,
+    .panel {
+      background: #15151b;
+      border: 1px solid #292932;
+      border-radius: 24px;
+    }
+
     .account-card {
       width: min(500px, 100%);
       padding: 35px;
-      border-radius: 25px;
-      background: #15151b;
-      border: 1px solid #292932;
       box-shadow: 0 20px 80px rgba(0, 0, 0, .45);
     }
 
@@ -154,6 +160,31 @@
       filter: brightness(1.08);
     }
 
+    .secondary-btn {
+      border: 1px solid #3a3a46;
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: white;
+      background: #1c1c23;
+    }
+
+    .secondary-btn:hover {
+      background: #292933;
+    }
+
+    .danger-btn {
+      border: 0;
+      padding: 12px 16px;
+      border-radius: 12px;
+      color: white;
+      background: #c92f2f;
+      font-weight: bold;
+    }
+
+    .danger-btn:hover {
+      background: #ee3f3f;
+    }
+
     #siteContent {
       display: none;
     }
@@ -190,21 +221,55 @@
       white-space: pre-wrap;
     }
 
-    .upload-box {
-      padding: 25px;
-      border-radius: 22px;
-      background: #15151b;
-      border: 1px solid #292932;
-      margin-bottom: 30px;
+    .profile-banner-content {
+      flex: 1;
     }
 
-    .upload-box h2 {
+    .profile-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .panel {
+      padding: 25px;
+      margin-bottom: 28px;
+    }
+
+    .panel h2 {
       margin-bottom: 8px;
     }
 
-    .upload-box .small {
+    .small {
       color: #9696a2;
       margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .edit-panel {
+      display: none;
+    }
+
+    .edit-avatar-preview {
+      width: 100px;
+      height: 100px;
+      margin-top: 12px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ff2c85;
+      background: #26262e;
+    }
+
+    .edit-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .edit-buttons .primary-btn {
+      margin-top: 0;
+      width: auto;
     }
 
     .videos-title {
@@ -323,7 +388,23 @@
       min-height: 20px;
     }
 
-    @media (max-width: 650px) {
+    .danger-zone {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #34343d;
+    }
+
+    .danger-zone h3 {
+      color: #ff6464;
+      margin-bottom: 8px;
+    }
+
+    .danger-zone p {
+      color: #9999a5;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 700px) {
       header {
         padding: 15px 4%;
       }
@@ -338,11 +419,16 @@
 
       .profile-banner {
         align-items: flex-start;
+        flex-wrap: wrap;
       }
 
       .profile-banner img {
         width: 65px;
         height: 65px;
+      }
+
+      .profile-actions {
+        width: 100%;
       }
     }
   </style>
@@ -359,10 +445,7 @@
     <img id="headerAvatar" alt="Photo de profil">
     <strong id="headerUsername"></strong>
 
-    <button
-      class="logout-btn"
-      onclick="logout()"
-    >
+    <button class="logout-btn" onclick="logout()">
       Déconnexion
     </button>
   </div>
@@ -370,19 +453,16 @@
 
 <main class="main">
 
-  <!-- Création de compte obligatoire -->
-  <section
-    class="account-screen"
-    id="accountScreen"
-  >
+  <!-- CRÉATION DU COMPTE -->
+
+  <section class="account-screen" id="accountScreen">
 
     <div class="account-card">
 
       <h1>Crée ton compte</h1>
 
       <p>
-        Tu dois créer un profil avant de pouvoir
-        accéder aux vidéos.
+        Tu dois créer un profil avant de pouvoir voir les vidéos.
       </p>
 
       <form id="accountForm">
@@ -394,8 +474,8 @@
         <input
           type="text"
           id="username"
-          placeholder="Ton pseudo"
           maxlength="30"
+          placeholder="Ton pseudo"
           required
         >
 
@@ -411,8 +491,8 @@
         >
 
         <img
-          class="profile-preview"
           id="profilePreview"
+          class="profile-preview"
           alt="Aperçu"
         >
 
@@ -428,8 +508,8 @@
         ></textarea>
 
         <button
-          type="submit"
           class="primary-btn"
+          type="submit"
         >
           Créer mon compte
         </button>
@@ -446,8 +526,11 @@
   </section>
 
 
-  <!-- Site accessible après création du compte -->
+  <!-- SITE -->
+
   <section id="siteContent">
+
+    <!-- PROFIL -->
 
     <div class="profile-banner">
 
@@ -456,15 +539,139 @@
         alt="Photo de profil"
       >
 
-      <div>
+      <div class="profile-banner-content">
+
         <h2 id="profileName"></h2>
+
         <p id="profileBio"></p>
+
+      </div>
+
+      <div class="profile-actions">
+
+        <button
+          class="secondary-btn"
+          onclick="openEditProfile()"
+        >
+          Modifier mon compte
+        </button>
+
       </div>
 
     </div>
 
 
-    <div class="upload-box">
+    <!-- MODIFIER LE COMPTE -->
+
+    <div
+      class="panel edit-panel"
+      id="editProfilePanel"
+    >
+
+      <h2>
+        Modifier mon compte
+      </h2>
+
+      <p class="small">
+        Tu peux changer ton nom, ta bio et ta photo.
+      </p>
+
+      <form id="editProfileForm">
+
+        <label for="editUsername">
+          Nom du compte
+        </label>
+
+        <input
+          type="text"
+          id="editUsername"
+          maxlength="30"
+          required
+        >
+
+
+        <label for="editBio">
+          Bio
+        </label>
+
+        <textarea
+          id="editBio"
+          maxlength="180"
+          required
+        ></textarea>
+
+
+        <label for="editAvatarInput">
+          Nouvelle photo de profil
+        </label>
+
+        <input
+          type="file"
+          id="editAvatarInput"
+          accept="image/*"
+        >
+
+        <img
+          id="editAvatarPreview"
+          class="edit-avatar-preview"
+          alt="Photo actuelle"
+        >
+
+
+        <div class="edit-buttons">
+
+          <button
+            type="submit"
+            class="primary-btn"
+          >
+            Enregistrer
+          </button>
+
+          <button
+            type="button"
+            class="secondary-btn"
+            onclick="closeEditProfile()"
+          >
+            Annuler
+          </button>
+
+        </div>
+
+        <div
+          class="status"
+          id="editStatus"
+        ></div>
+
+      </form>
+
+
+      <!-- SUPPRESSION DU COMPTE -->
+
+      <div class="danger-zone">
+
+        <h3>
+          Supprimer le compte
+        </h3>
+
+        <p>
+          Cela supprimera ton profil et toutes tes vidéos enregistrées sur cet appareil.
+        </p>
+
+        <button
+          class="danger-btn"
+          onclick="deleteAccount()"
+        >
+          Supprimer définitivement mon compte
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- UPLOAD -->
+
+    <div class="panel">
 
       <h2>
         Uploader une vidéo
@@ -488,6 +695,7 @@
           required
         >
 
+
         <label for="videoFile">
           Vidéo
         </label>
@@ -498,6 +706,7 @@
           accept="video/*"
           required
         >
+
 
         <button
           class="primary-btn"
@@ -554,11 +763,18 @@
   const profilePreview =
     document.getElementById("profilePreview");
 
+  const editProfileForm =
+    document.getElementById("editProfileForm");
+
+  const editAvatarInput =
+    document.getElementById("editAvatarInput");
+
+  const editAvatarPreview =
+    document.getElementById("editAvatarPreview");
+
 
   /*
-    ===================================
-    BASE DE DONNÉES INDEXEDDB
-    ===================================
+    OUVERTURE DE LA BASE INDEXEDDB
   */
 
   function openDatabase() {
@@ -573,6 +789,7 @@
 
         const db =
           event.target.result;
+
 
         if (
           !db.objectStoreNames.contains("videos")
@@ -604,7 +821,7 @@
       request.onerror = function() {
 
         reject(
-          "Erreur avec la base de données"
+          "Erreur base de données"
         );
 
       };
@@ -615,9 +832,7 @@
 
 
   /*
-    ===================================
-    APERÇU PHOTO DE PROFIL
-    ===================================
+    APERÇU PHOTO À LA CRÉATION
   */
 
   avatarInput.addEventListener(
@@ -626,6 +841,7 @@
 
       const file =
         this.files[0];
+
 
       if (!file) {
         return;
@@ -654,9 +870,7 @@
 
 
   /*
-    ===================================
     CRÉATION DU COMPTE
-    ===================================
   */
 
   accountForm.addEventListener(
@@ -739,29 +953,14 @@
 
 
   /*
-    ===================================
-    AFFICHAGE DU SITE
-    ===================================
+    AFFICHAGE DU PROFIL
   */
 
-  function showSite() {
+  function updateProfileDisplay() {
 
     if (!currentProfile) {
       return;
     }
-
-
-    accountScreen.style.display =
-      "none";
-
-    siteContent.style.display =
-      "block";
-
-
-    document
-      .getElementById("headerProfile")
-      .style.display =
-      "flex";
 
 
     document
@@ -793,6 +992,31 @@
       .textContent =
       currentProfile.username;
 
+  }
+
+
+  function showSite() {
+
+    if (!currentProfile) {
+      return;
+    }
+
+
+    accountScreen.style.display =
+      "none";
+
+
+    siteContent.style.display =
+      "block";
+
+
+    document
+      .getElementById("headerProfile")
+      .style.display =
+      "flex";
+
+
+    updateProfileDisplay();
 
     loadVideos();
 
@@ -800,9 +1024,296 @@
 
 
   /*
-    ===================================
-    AJOUTER UNE VIDÉO
-    ===================================
+    OUVRIR MODIFICATION DU PROFIL
+  */
+
+  function openEditProfile() {
+
+    if (!currentProfile) {
+      return;
+    }
+
+
+    document
+      .getElementById("editProfilePanel")
+      .style.display =
+      "block";
+
+
+    document
+      .getElementById("editUsername")
+      .value =
+      currentProfile.username;
+
+
+    document
+      .getElementById("editBio")
+      .value =
+      currentProfile.bio;
+
+
+    editAvatarPreview.src =
+      currentProfile.avatar;
+
+
+    editAvatarInput.value =
+      "";
+
+
+    document
+      .getElementById("editStatus")
+      .textContent =
+      "";
+
+
+    document
+      .getElementById("editProfilePanel")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+
+
+  function closeEditProfile() {
+
+    document
+      .getElementById("editProfilePanel")
+      .style.display =
+      "none";
+
+  }
+
+
+  /*
+    APERÇU NOUVELLE PHOTO
+  */
+
+  editAvatarInput.addEventListener(
+    "change",
+    function() {
+
+      const file =
+        this.files[0];
+
+
+      if (!file) {
+        return;
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function(event) {
+
+          editAvatarPreview.src =
+            event.target.result;
+
+        };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+
+  /*
+    MODIFIER LE PROFIL
+  */
+
+  editProfileForm.addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const oldUsername =
+        currentProfile.username;
+
+
+      const newUsername =
+        document
+          .getElementById("editUsername")
+          .value
+          .trim();
+
+
+      const newBio =
+        document
+          .getElementById("editBio")
+          .value
+          .trim();
+
+
+      if (
+        !newUsername ||
+        !newBio
+      ) {
+
+        document
+          .getElementById("editStatus")
+          .textContent =
+          "Le nom et la bio sont obligatoires.";
+
+        return;
+
+      }
+
+
+      const newAvatarFile =
+        editAvatarInput.files[0];
+
+
+      if (newAvatarFile) {
+
+        const reader =
+          new FileReader();
+
+
+        reader.onload =
+          function(event) {
+
+            saveProfileChanges(
+              oldUsername,
+              newUsername,
+              newBio,
+              event.target.result
+            );
+
+          };
+
+
+        reader.readAsDataURL(
+          newAvatarFile
+        );
+
+      } else {
+
+        saveProfileChanges(
+          oldUsername,
+          newUsername,
+          newBio,
+          currentProfile.avatar
+        );
+
+      }
+
+    }
+  );
+
+
+  /*
+    ENREGISTRER LES CHANGEMENTS
+  */
+
+  function saveProfileChanges(
+    oldUsername,
+    newUsername,
+    newBio,
+    newAvatar
+  ) {
+
+    currentProfile = {
+
+      username: newUsername,
+
+      bio: newBio,
+
+      avatar: newAvatar
+
+    };
+
+
+    localStorage.setItem(
+      "pussyendingProfile",
+      JSON.stringify(currentProfile)
+    );
+
+
+    /*
+      Met aussi à jour les anciennes vidéos
+      pour afficher le nouveau nom
+      et la nouvelle photo.
+    */
+
+    const transaction =
+      database.transaction(
+        ["videos"],
+        "readwrite"
+      );
+
+
+    const store =
+      transaction.objectStore(
+        "videos"
+      );
+
+
+    const request =
+      store.openCursor();
+
+
+    request.onsuccess =
+      function(event) {
+
+        const cursor =
+          event.target.result;
+
+
+        if (cursor) {
+
+          const video =
+            cursor.value;
+
+
+          if (
+            video.creator === oldUsername
+          ) {
+
+            video.creator =
+              newUsername;
+
+            video.avatar =
+              newAvatar;
+
+
+            cursor.update(video);
+
+          }
+
+
+          cursor.continue();
+
+        }
+
+      };
+
+
+    transaction.oncomplete =
+      function() {
+
+        updateProfileDisplay();
+
+        loadVideos();
+
+
+        document
+          .getElementById("editStatus")
+          .textContent =
+          "Profil modifié avec succès.";
+
+      };
+
+  }
+
+
+  /*
+    UPLOAD VIDÉO
   */
 
   videoForm.addEventListener(
@@ -885,7 +1396,6 @@
 
           videoForm.reset();
 
-
           loadVideos();
 
         };
@@ -906,9 +1416,7 @@
 
 
   /*
-    ===================================
     CHARGER LES VIDÉOS
-    ===================================
   */
 
   function loadVideos() {
@@ -917,7 +1425,8 @@
       document.getElementById("videoGrid");
 
 
-    grid.innerHTML = "";
+    grid.innerHTML =
+      "";
 
 
     const transaction =
@@ -937,53 +1446,54 @@
       store.getAll();
 
 
-    request.onsuccess = function() {
+    request.onsuccess =
+      function() {
 
-      const videos =
-        request.result.sort(
-          function(a, b) {
-            return (
-              b.createdAt -
-              a.createdAt
-            );
+        const videos =
+          request.result.sort(
+            function(a, b) {
+
+              return (
+                b.createdAt -
+                a.createdAt
+              );
+
+            }
+          );
+
+
+        if (
+          videos.length === 0
+        ) {
+
+          grid.innerHTML = `
+            <div class="empty">
+              Aucune vidéo pour le moment.
+              <br>
+              Publie la première vidéo.
+            </div>
+          `;
+
+          return;
+
+        }
+
+
+        videos.forEach(
+          function(video) {
+
+            createVideoCard(video);
+
           }
         );
 
-
-      if (
-        videos.length === 0
-      ) {
-
-        grid.innerHTML = `
-          <div class="empty">
-            Aucune vidéo pour le moment.
-            <br>
-            Publie la première vidéo.
-          </div>
-        `;
-
-        return;
-
-      }
-
-
-      videos.forEach(
-        function(video) {
-
-          createVideoCard(video);
-
-        }
-      );
-
-    };
+      };
 
   }
 
 
   /*
-    ===================================
-    CRÉER UNE CARTE VIDÉO
-    ===================================
+    CRÉER UNE VIDÉO
   */
 
   function createVideoCard(video) {
@@ -1000,19 +1510,11 @@
       "video-card";
 
 
-    /*
-      Création de l'URL de la vidéo
-    */
-
     const videoURL =
       URL.createObjectURL(
         video.file
       );
 
-
-    /*
-      Lecteur vidéo
-    */
 
     const player =
       document.createElement("video");
@@ -1021,18 +1523,12 @@
     player.src =
       videoURL;
 
-
     player.controls =
       true;
-
 
     player.preload =
       "metadata";
 
-
-    /*
-      Informations vidéo
-    */
 
     const info =
       document.createElement("div");
@@ -1042,10 +1538,6 @@
       "video-info";
 
 
-    /*
-      Titre
-    */
-
     const title =
       document.createElement("h3");
 
@@ -1053,10 +1545,6 @@
     title.textContent =
       video.title;
 
-
-    /*
-      Ligne créateur
-    */
 
     const creatorRow =
       document.createElement("div");
@@ -1066,10 +1554,6 @@
       "creator-row";
 
 
-    /*
-      Photo du créateur
-    */
-
     const avatar =
       document.createElement("img");
 
@@ -1077,14 +1561,6 @@
     avatar.src =
       video.avatar;
 
-
-    avatar.alt =
-      "Photo du créateur";
-
-
-    /*
-      Nom du créateur
-    */
 
     const creatorName =
       document.createElement("div");
@@ -1099,9 +1575,7 @@
 
 
     /*
-      ===================================
       BOUTON S'ABONNER
-      ===================================
     */
 
     const subscribeButton =
@@ -1119,11 +1593,6 @@
     subscribeButton.dataset.subscribed =
       "false";
 
-
-    /*
-      Quand on passe la souris dessus :
-      "480p de vidéo"
-    */
 
     subscribeButton.addEventListener(
       "mouseenter",
@@ -1159,10 +1628,6 @@
     );
 
 
-    /*
-      Cliquer pour s'abonner
-    */
-
     subscribeButton.addEventListener(
       "click",
       function() {
@@ -1195,9 +1660,7 @@
 
 
     /*
-      ===================================
-      BOUTON SUPPRIMER
-      ===================================
+      BOUTON SUPPRIMER VIDÉO
     */
 
     const deleteButton =
@@ -1240,7 +1703,9 @@
           );
 
 
-        store.delete(video.id);
+        store.delete(
+          video.id
+        );
 
 
         transaction.oncomplete =
@@ -1250,28 +1715,13 @@
               videoURL
             );
 
-
             loadVideos();
-
-          };
-
-
-        transaction.onerror =
-          function() {
-
-            alert(
-              "Impossible de supprimer la vidéo."
-            );
 
           };
 
       }
     );
 
-
-    /*
-      Ajouter les éléments
-    */
 
     creatorRow.appendChild(
       avatar
@@ -1321,20 +1771,144 @@
 
 
   /*
-    ===================================
+    SUPPRIMER LE COMPTE
+  */
+
+  function deleteAccount() {
+
+    const firstConfirm =
+      confirm(
+        "Tu veux vraiment supprimer ton compte ? Toutes tes vidéos seront aussi supprimées."
+      );
+
+
+    if (!firstConfirm) {
+      return;
+    }
+
+
+    const secondConfirm =
+      confirm(
+        "Cette action est définitive. Confirmer la suppression ?"
+      );
+
+
+    if (!secondConfirm) {
+      return;
+    }
+
+
+    const usernameToDelete =
+      currentProfile.username;
+
+
+    const transaction =
+      database.transaction(
+        ["videos"],
+        "readwrite"
+      );
+
+
+    const store =
+      transaction.objectStore(
+        "videos"
+      );
+
+
+    const request =
+      store.openCursor();
+
+
+    request.onsuccess =
+      function(event) {
+
+        const cursor =
+          event.target.result;
+
+
+        if (cursor) {
+
+          const video =
+            cursor.value;
+
+
+          if (
+            video.creator ===
+            usernameToDelete
+          ) {
+
+            cursor.delete();
+
+          }
+
+
+          cursor.continue();
+
+        }
+
+      };
+
+
+    transaction.oncomplete =
+      function() {
+
+        localStorage.removeItem(
+          "pussyendingProfile"
+        );
+
+
+        currentProfile =
+          null;
+
+
+        siteContent.style.display =
+          "none";
+
+
+        document
+          .getElementById("headerProfile")
+          .style.display =
+          "none";
+
+
+        document
+          .getElementById("editProfilePanel")
+          .style.display =
+          "none";
+
+
+        accountScreen.style.display =
+          "flex";
+
+
+        accountForm.reset();
+
+
+        profilePreview.style.display =
+          "none";
+
+
+        profilePreview.src =
+          "";
+
+
+        alert(
+          "Ton compte a été supprimé."
+        );
+
+      };
+
+  }
+
+
+  /*
     DÉCONNEXION
-    ===================================
   */
 
   function logout() {
 
     currentProfile =
       null;
-
-
-    localStorage.removeItem(
-      "pussyendingProfile"
-    );
 
 
     siteContent.style.display =
@@ -1351,23 +1925,23 @@
       "none";
 
 
+    document
+      .getElementById("editProfilePanel")
+      .style.display =
+      "none";
+
+
     accountForm.reset();
 
 
     profilePreview.style.display =
       "none";
 
-
-    profilePreview.src =
-      "";
-
   }
 
 
   /*
-    ===================================
-    DÉMARRAGE DU SITE
-    ===================================
+    DÉMARRAGE
   */
 
   async function start() {
@@ -1405,7 +1979,6 @@
     } catch (error) {
 
       console.error(error);
-
 
       alert(
         "Erreur au démarrage du site."
