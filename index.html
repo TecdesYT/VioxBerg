@@ -1,314 +1,842 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vioxa Hébergement</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pussyending</title>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-    font-family:'Segoe UI',Tahoma,sans-serif;
-    background:#0d1117;
-    color:#fff;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* NAVBAR */
-nav{
-    background:#111827;
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-.logo{color:#4f46e5;font-weight:bold;font-size:1.4rem}
-nav ul{list-style:none;display:flex;gap:15px;align-items:center}
-nav a, nav button{
-    color:white;
-    background:none;
-    border:none;
-    cursor:pointer;
-    font-size:1rem;
-    padding:8px 14px;
-    border-radius:6px;
-}
-nav a:hover, nav button:hover{background:#1f2933}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0f;
+      color: white;
+      min-height: 100vh;
+    }
 
-/* PROMO */
-.promo{
-    background:linear-gradient(135deg,#22c55e,#16a34a);
-    text-align:center;
-    padding:15px;
-}
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
 
-/* HEADER */
-header{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(135deg,#1f6feb,#4f46e5);
-    padding:90px 20px;
-    text-align:center;
-}
-header h1{font-size:3rem}
-header p{margin-top:10px;font-size:1.2rem}
+    button {
+      cursor: pointer;
+    }
 
-/* OFFRES */
-.pricing{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    flex-wrap:wrap;
-    padding:60px 20px;
-}
-.plan{
-    background:#161b22;
-    border-radius:12px;
-    padding:30px;
-    width:300px;
-    text-align:center;
-    border:2px solid #2d333b;
-    position:relative;
-}
-.plan h2{font-size:1.8rem}
-.price{font-size:2.4rem;color:#4f46e5;margin:20px 0}
-.plan ul{list-style:none;margin-bottom:25px}
-.plan ul li{margin:10px 0}
-.plan button{
-    background:#4f46e5;
-    border:none;
-    padding:14px 25px;
-    border-radius:8px;
-    color:white;
-    cursor:pointer;
-}
-.out{opacity:.6}
-.out button{background:#374151;cursor:not-allowed}
-.badge{
-    position:absolute;
-    top:15px;
-    right:15px;
-    background:#dc2626;
-    padding:5px 10px;
-    border-radius:6px;
-    font-size:.75rem;
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 6%;
+      background: rgba(11, 11, 15, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid #25252d;
+    }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:20px;
-    color:#9ca3af;
-}
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
 
-/* MODAL PAIEMENT */
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.7);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
-}
-.modal-content{
-    background:#161b22;
-    padding:25px;
-    border-radius:12px;
-    width:380px;
-    max-height:90vh;
-    overflow:auto;
-}
-.modal h3{text-align:center;margin-bottom:15px}
+    .logo span {
+      color: #ff2c85;
+    }
 
-.modal input{
-    width:100%;
-    padding:12px;
-    margin-bottom:10px;
-    border-radius:6px;
-    border:none;
-    background:#0d1117;
-    color:white;
-}
+    .header-profile {
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
 
-.modal button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-    background:#4f46e5;
-    color:white;
-    cursor:pointer;
-}
+    .header-profile img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #292932;
+    }
 
-.msg{text-align:center;font-size:.9rem;margin-top:10px}
-.success{color:#22c55e}
-.error{color:#ef4444}
+    .main {
+      width: min(1100px, 92%);
+      margin: 35px auto;
+    }
 
-/* COOKIES */
-.cookie{
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    background:#161b22;
-    border:1px solid #2d333b;
-    padding:20px;
-    border-radius:10px;
-    max-width:300px;
-    z-index:10000;
-}
-.cookie button{
-    margin-right:10px;
-    padding:8px 15px;
-    border-radius:6px;
-    border:none;
-    cursor:pointer;
-}
-.accept{background:#4f46e5;color:white}
-.refuse{background:#374151;color:white}
+    .account-screen {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-/* FEU D'ARTIFICE */
-.firework{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:#4f46e5;
-    border-radius:50%;
-    pointer-events:none;
-    animation:fire 0.8s ease-out forwards;
-}
-@keyframes fire{
-    from{opacity:1}
-    to{transform:translate(var(--x),var(--y));opacity:0}
-}
-</style>
+    .account-card {
+      width: min(500px, 100%);
+      padding: 35px;
+      border-radius: 25px;
+      background: #15151b;
+      border: 1px solid #292932;
+      box-shadow: 0 20px 80px rgba(0,0,0,.45);
+    }
+
+    .account-card h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .account-card p {
+      color: #a6a6b3;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid #33333d;
+      border-radius: 13px;
+      background: #0e0e13;
+      color: white;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #ff2c85;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .profile-preview {
+      width: 90px;
+      height: 90px;
+      margin: 10px 0;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #26262e;
+      border: 3px solid #ff2c85;
+      display: none;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: 0;
+      margin-top: 22px;
+      padding: 15px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, #ff2c85, #8e37ff);
+      transition: .2s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    #siteContent {
+      display: none;
+    }
+
+    .profile-banner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 22px;
+      border: 1px solid #292932;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,44,133,.22), transparent 35%),
+        #15151b;
+    }
+
+    .profile-banner img {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ff2c85;
+    }
+
+    .profile-banner h2 {
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    .profile-banner p {
+      color: #aaaab4;
+      line-height: 1.45;
+    }
+
+    .upload-box {
+      padding: 25px;
+      border-radius: 22px;
+      background: #15151b;
+      border: 1px solid #292932;
+      margin-bottom: 30px;
+    }
+
+    .upload-box h2 {
+      margin-bottom: 8px;
+    }
+
+    .upload-box .small {
+      color: #9696a2;
+      margin-bottom: 12px;
+    }
+
+    .videos-title {
+      margin-bottom: 18px;
+      font-size: 27px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      border-radius: 20px;
+      background: #15151b;
+      border: 1px solid #292932;
+    }
+
+    .video-card video {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: black;
+    }
+
+    .video-info {
+      padding: 17px;
+    }
+
+    .video-info h3 {
+      margin-bottom: 14px;
+      font-size: 19px;
+      word-break: break-word;
+    }
+
+    .creator-row {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .creator-row img {
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .creator-name {
+      flex: 1;
+      font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .subscribe-btn {
+      min-width: 122px;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 16px;
+      color: white;
+      background: #ff2c85;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    .subscribe-btn:hover {
+      background: #8e37ff;
+      transform: scale(1.03);
+    }
+
+    .empty {
+      padding: 35px;
+      color: #9b9ba7;
+      text-align: center;
+      border: 1px dashed #373741;
+      border-radius: 18px;
+      grid-column: 1 / -1;
+    }
+
+    .logout-btn {
+      border: 1px solid #383842;
+      padding: 10px 15px;
+      border-radius: 12px;
+      color: white;
+      background: #1a1a20;
+    }
+
+    .logout-btn:hover {
+      background: #26262f;
+    }
+
+    .status {
+      margin-top: 12px;
+      color: #ff7bb3;
+      min-height: 20px;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 15px 4%;
+      }
+
+      .main {
+        width: 94%;
+      }
+
+      .account-card {
+        padding: 24px;
+      }
+
+      .profile-banner {
+        align-items: flex-start;
+      }
+
+      .profile-banner img {
+        width: 65px;
+        height: 65px;
+      }
+
+      .creator-row {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
-<div class="logo">Vioxa Hébergement</div>
-<ul>
-<li><a href="#">Discord</a></li>
-<li><a href="#">Panel</a></li>
-</ul>
-</nav>
-
-<div class="promo">
-🎉 Code <strong>BIENVENUE</strong> : <strong>-10%</strong> (1 seule fois)
-</div>
-
 <header>
-<h1>Vioxa Hébergement</h1>
-<p>Hébergement Minecraft performant et pas cher 🚀</p>
+  <div class="logo">Pussy<span>ending</span></div>
+
+  <div class="header-profile" id="headerProfile">
+    <img id="headerAvatar" alt="Photo de profil">
+    <strong id="headerUsername"></strong>
+    <button class="logout-btn" onclick="logout()">Déconnexion</button>
+  </div>
 </header>
 
-<section class="pricing">
+<main class="main">
 
-<div class="plan">
-<h2>Starter — 4 Go</h2>
-<div class="price">5,99€</div>
-<ul>
-<li>4 Go RAM</li>
-<li>Slots illimités</li>
-<li>Support inclus</li>
-</ul>
-<button onclick="openOrder()">Commander</button>
-</div>
+  <!-- Création de compte obligatoire -->
+  <section class="account-screen" id="accountScreen">
+    <div class="account-card">
+      <h1>Crée ton compte</h1>
+      <p>
+        Tu dois créer un profil avant de pouvoir accéder aux vidéos.
+      </p>
 
-<div class="plan out">
-<div class="badge">RUPTURE</div>
-<h2>Gamer — 12 Go</h2>
-<div class="price">12,99€</div>
-<button disabled>Indisponible</button>
-</div>
+      <form id="accountForm">
 
-<div class="plan out">
-<div class="badge">RUPTURE</div>
-<h2>Pro — 32 Go</h2>
-<div class="price">24,99€</div>
-<button disabled>Indisponible</button>
-</div>
+        <label for="username">Nom du compte</label>
+        <input
+          type="text"
+          id="username"
+          placeholder="Ton pseudo"
+          maxlength="30"
+          required
+        >
 
-</section>
+        <label for="avatarInput">Photo de profil</label>
+        <input
+          type="file"
+          id="avatarInput"
+          accept="image/*"
+          required
+        >
 
-<footer>
-© 2026 Vioxa Hébergement — Tous droits réservés
-</footer>
+        <img class="profile-preview" id="profilePreview" alt="Aperçu">
 
-<!-- MODAL PAIEMENT -->
-<div class="modal" id="orderModal">
-<div class="modal-content">
-<h3>Finaliser votre commande</h3>
+        <label for="bio">Bio</label>
+        <textarea
+          id="bio"
+          maxlength="180"
+          placeholder="Écris quelques mots sur toi..."
+          required
+        ></textarea>
 
-<input id="email" placeholder="Adresse email">
-<input id="fullname" placeholder="Nom et prénom">
-<input id="address" placeholder="Adresse">
-<input id="city" placeholder="Ville">
-<input id="postal" placeholder="Code postal">
-<input id="country" placeholder="Pays">
-<input id="promoCode" placeholder="Code de réduction (optionnel)">
+        <button type="submit" class="primary-btn">
+          Créer mon compte
+        </button>
 
-<button onclick="pay()">Passer au paiement</button>
-<div class="msg" id="orderMsg"></div>
-</div>
-</div>
+        <div class="status" id="accountStatus"></div>
 
-<!-- COOKIES -->
-<div class="cookie" id="cookieBox">
-<p>🍪 Nous utilisons des cookies pour améliorer votre expérience.</p>
-<button class="accept" onclick="acceptCookie(event)">Accepter</button>
-<button class="refuse" onclick="closeCookie()">Refuser</button>
-</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Site accessible après création du compte -->
+  <section id="siteContent">
+
+    <div class="profile-banner">
+      <img id="profileAvatar" alt="Photo">
+      <div>
+        <h2 id="profileName"></h2>
+        <p id="profileBio"></p>
+      </div>
+    </div>
+
+    <div class="upload-box">
+      <h2>Uploader une vidéo</h2>
+      <p class="small">
+        Ajoute un titre puis sélectionne ta vidéo.
+      </p>
+
+      <form id="videoForm">
+
+        <label for="videoTitle">Titre</label>
+        <input
+          id="videoTitle"
+          type="text"
+          maxlength="80"
+          placeholder="Titre de la vidéo"
+          required
+        >
+
+        <label for="videoFile">Vidéo</label>
+        <input
+          id="videoFile"
+          type="file"
+          accept="video/*"
+          required
+        >
+
+        <button class="primary-btn" type="submit">
+          Publier la vidéo
+        </button>
+
+        <div class="status" id="uploadStatus"></div>
+
+      </form>
+    </div>
+
+    <h2 class="videos-title">Vidéos</h2>
+
+    <div class="video-grid" id="videoGrid"></div>
+
+  </section>
+
+</main>
 
 <script>
-function openOrder(){
-    orderModal.style.display="flex";
-}
-orderModal.onclick=e=>{
-    if(e.target===orderModal)orderModal.style.display="none";
-}
+  let currentProfile = null;
+  let database = null;
 
-function pay(){
-    if(!email.value||!fullname.value||!address.value||!city.value||!postal.value||!country.value){
-        orderMsg.textContent="Veuillez remplir tous les champs obligatoires";
-        orderMsg.className="msg error";
+  const accountScreen = document.getElementById("accountScreen");
+  const siteContent = document.getElementById("siteContent");
+
+  const accountForm = document.getElementById("accountForm");
+  const videoForm = document.getElementById("videoForm");
+
+  const avatarInput = document.getElementById("avatarInput");
+  const profilePreview = document.getElementById("profilePreview");
+
+  /*
+    INDEXED DB
+    Permet de conserver les vidéos dans le navigateur,
+    même après avoir fermé/rechargé la page.
+  */
+
+  function openDatabase() {
+    return new Promise((resolve, reject) => {
+
+      const request = indexedDB.open("pussyendingDB", 1);
+
+      request.onupgradeneeded = function(event) {
+        const db = event.target.result;
+
+        if (!db.objectStoreNames.contains("videos")) {
+          db.createObjectStore("videos", {
+            keyPath: "id",
+            autoIncrement: true
+          });
+        }
+      };
+
+      request.onsuccess = function(event) {
+        database = event.target.result;
+        resolve(database);
+      };
+
+      request.onerror = function() {
+        reject("Erreur IndexedDB");
+      };
+
+    });
+  }
+
+  /*
+    PHOTO DE PROFIL
+  */
+
+  avatarInput.addEventListener("change", function() {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      profilePreview.src = e.target.result;
+      profilePreview.style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  /*
+    CRÉATION DU COMPTE
+  */
+
+  accountForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const username =
+      document.getElementById("username").value.trim();
+
+    const bio =
+      document.getElementById("bio").value.trim();
+
+    const avatar =
+      avatarInput.files[0];
+
+    if (!username || !bio || !avatar) {
+      document.getElementById("accountStatus").textContent =
+        "Remplis tous les champs.";
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+
+      const profile = {
+        username: username,
+        bio: bio,
+        avatar: event.target.result
+      };
+
+      localStorage.setItem(
+        "pussyendingProfile",
+        JSON.stringify(profile)
+      );
+
+      currentProfile = profile;
+
+      showSite();
+    };
+
+    reader.readAsDataURL(avatar);
+  });
+
+  /*
+    AFFICHAGE DU SITE
+  */
+
+  function showSite() {
+
+    if (!currentProfile) return;
+
+    accountScreen.style.display = "none";
+    siteContent.style.display = "block";
+
+    document.getElementById("headerProfile").style.display = "flex";
+
+    document.getElementById("profileAvatar").src =
+      currentProfile.avatar;
+
+    document.getElementById("profileName").textContent =
+      currentProfile.username;
+
+    document.getElementById("profileBio").textContent =
+      currentProfile.bio;
+
+    document.getElementById("headerAvatar").src =
+      currentProfile.avatar;
+
+    document.getElementById("headerUsername").textContent =
+      currentProfile.username;
+
+    loadVideos();
+  }
+
+  /*
+    UPLOAD VIDÉO
+  */
+
+  videoForm.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const title =
+      document.getElementById("videoTitle").value.trim();
+
+    const videoFile =
+      document.getElementById("videoFile").files[0];
+
+    if (!title || !videoFile) {
+      document.getElementById("uploadStatus").textContent =
+        "Ajoute un titre et une vidéo.";
+      return;
+    }
+
+    const video = {
+      title: title,
+      file: videoFile,
+      creator: currentProfile.username,
+      avatar: currentProfile.avatar,
+      createdAt: Date.now()
+    };
+
+    const transaction =
+      database.transaction(["videos"], "readwrite");
+
+    const store =
+      transaction.objectStore("videos");
+
+    store.add(video);
+
+    transaction.oncomplete = function() {
+
+      document.getElementById("uploadStatus").textContent =
+        "Vidéo publiée !";
+
+      videoForm.reset();
+
+      loadVideos();
+    };
+
+    transaction.onerror = function() {
+      document.getElementById("uploadStatus").textContent =
+        "Erreur pendant l'upload.";
+    };
+  });
+
+  /*
+    CHARGEMENT DES VIDÉOS
+  */
+
+  function loadVideos() {
+
+    const grid =
+      document.getElementById("videoGrid");
+
+    grid.innerHTML = "";
+
+    const transaction =
+      database.transaction(["videos"], "readonly");
+
+    const store =
+      transaction.objectStore("videos");
+
+    const request =
+      store.getAll();
+
+    request.onsuccess = function() {
+
+      const videos =
+        request.result.sort(
+          (a, b) => b.createdAt - a.createdAt
+        );
+
+      if (videos.length === 0) {
+
+        grid.innerHTML = `
+          <div class="empty">
+            Aucune vidéo pour le moment.<br>
+            Publie la première vidéo.
+          </div>
+        `;
+
         return;
-    }
+      }
 
-    let price = 5.99;
-    if(promoCode.value.toUpperCase()==="BIENVENUE"){
-        price = (price * 0.9).toFixed(2);
-        orderMsg.textContent = `✅ Code promo appliqué ! Total : ${price}€`;
-    }else{
-        orderMsg.textContent = `💳 Paiement simulé de ${price}€ en cours...`;
-    }
-    orderMsg.className="msg success";
+      videos.forEach(video => {
+        createVideoCard(video);
+      });
+    };
+  }
 
-    setTimeout(()=>{
-        orderMsg.textContent="🎉 Paiement simulé réussi ! Merci pour votre commande.";
-    },2000);
-}
+  /*
+    CARTE VIDÉO
+  */
 
-/* COOKIES */
-function closeCookie(){
-    cookieBox.style.display="none";
-}
-function acceptCookie(e){
-    const r=e.target.getBoundingClientRect();
-    for(let i=0;i<20;i++){
-        const f=document.createElement("span");
-        f.className="firework";
-        f.style.left=r.left+r.width/2+"px";
-        f.style.top=r.top+r.height/2+"px";
-        f.style.setProperty("--x",(Math.random()*120-60)+"px");
-        f.style.setProperty("--y",(Math.random()*120-60)+"px");
-        document.body.appendChild(f);
-        setTimeout(()=>f.remove(),800);
+  function createVideoCard(video) {
+
+    const grid =
+      document.getElementById("videoGrid");
+
+    const card =
+      document.createElement("article");
+
+    card.className = "video-card";
+
+    const videoURL =
+      URL.createObjectURL(video.file);
+
+    const player =
+      document.createElement("video");
+
+    player.src = videoURL;
+    player.controls = true;
+    player.preload = "metadata";
+
+    const info =
+      document.createElement("div");
+
+    info.className = "video-info";
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent = video.title;
+
+    const creatorRow =
+      document.createElement("div");
+
+    creatorRow.className = "creator-row";
+
+    const avatar =
+      document.createElement("img");
+
+    avatar.src = video.avatar;
+
+    const creatorName =
+      document.createElement("div");
+
+    creatorName.className = "creator-name";
+    creatorName.textContent = video.creator;
+
+    /*
+      BOUTON S'ABONNER
+      Au survol => "480p de vidéo"
+    */
+
+    const subscribeButton =
+      document.createElement("button");
+
+    subscribeButton.className = "subscribe-btn";
+    subscribeButton.textContent = "S'abonner";
+
+    subscribeButton.addEventListener("mouseenter", function() {
+      this.textContent = "480p de vidéo";
+    });
+
+    subscribeButton.addEventListener("mouseleave", function() {
+
+      if (this.dataset.subscribed === "true") {
+        this.textContent = "Abonné";
+      } else {
+        this.textContent = "S'abonner";
+      }
+
+    });
+
+    subscribeButton.addEventListener("click", function() {
+
+      const subscribed =
+        this.dataset.subscribed === "true";
+
+      if (subscribed) {
+        this.dataset.subscribed = "false";
+        this.textContent = "S'abonner";
+      } else {
+        this.dataset.subscribed = "true";
+        this.textContent = "Abonné";
+      }
+
+    });
+
+    creatorRow.appendChild(avatar);
+    creatorRow.appendChild(creatorName);
+    creatorRow.appendChild(subscribeButton);
+
+    info.appendChild(title);
+    info.appendChild(creatorRow);
+
+    card.appendChild(player);
+    card.appendChild(info);
+
+    grid.appendChild(card);
+  }
+
+  /*
+    DÉCONNEXION
+  */
+
+  function logout() {
+
+    currentProfile = null;
+
+    localStorage.removeItem("pussyendingProfile");
+
+    siteContent.style.display = "none";
+    accountScreen.style.display = "flex";
+
+    document.getElementById("headerProfile").style.display = "none";
+
+    accountForm.reset();
+
+    profilePreview.style.display = "none";
+  }
+
+  /*
+    DÉMARRAGE
+  */
+
+  async function start() {
+
+    await openDatabase();
+
+    const saved =
+      localStorage.getItem("pussyendingProfile");
+
+    if (saved) {
+
+      currentProfile =
+        JSON.parse(saved);
+
+      showSite();
+
+    } else {
+
+      accountScreen.style.display = "flex";
+      siteContent.style.display = "none";
+
     }
-    setTimeout(closeCookie,300);
-}
+  }
+
+  start();
 </script>
 
 </body>
